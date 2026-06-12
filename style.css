@@ -81,10 +81,10 @@ p + p { margin-top: .8rem; }
 .nav__inner { max-width: var(--max-w); margin: 0 auto; padding: 0 1.75rem; height: 70px; display: flex; align-items: center; position: relative; }
 .nav__logo { font-family: var(--font-head); font-size: 1.2rem; color: var(--text); font-style: italic; display: flex; align-items: center; gap: .5rem; }
 .nav__logo-leaf { display: flex; align-items: center; }
-.nav__menu { display: flex; align-items: center; gap: 1rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+.nav__menu { display: flex; align-items: center; gap: 1rem; list-style: none; flex: 1; justify-content: center; }
 .nav__menu a { font-size: .875rem; font-weight: 500; color: var(--text-soft); transition: color var(--transition); }
 .nav__menu a:hover { color: var(--sage-deep); }
-.nav__actions { display: flex; align-items: center; gap: .75rem; margin-left: auto; }
+.nav__actions { display: flex; align-items: center; gap: .75rem; flex-shrink: 0; }
 .nav__cta--mobile-only { display: none; }
 .nav__cta { background: var(--sage-deep); color: var(--white) !important; padding: .55rem 1.4rem; border-radius: 50px; font-size: .85rem !important; }
 .nav__cta:hover { background: var(--sage) !important; box-shadow: 0 4px 16px rgba(78,114,73,.3); }
