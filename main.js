@@ -130,16 +130,35 @@ if (carouselItems.length) {
   });
 })();
 
-// Show thank-you message after FormSubmit.co redirect
-(function () {
-  if (window.location.search.indexOf('poslan=1') > -1) {
-    var form = document.getElementById('contactForm');
-    var thanks = document.getElementById('formThanks');
-    if (form && thanks) {
-      form.querySelectorAll('input:not([type=hidden]),select,textarea,button').forEach(function(el){ el.style.display = 'none'; });
-      thanks.style.display = 'block';
+// Contact form — AJAX submit, inline thank-you
+const form = document.getElementById('contactForm');
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const orig = btn.textContent;
+    btn.textContent = 'Küldés…';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/csanad.peter.czarth@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Új érdeklődő – lelkekgyogyasza.hu',
+          name: form.querySelector('[name="name"]').value,
+          email: form.querySelector('[name="email"]').value,
+          service: form.querySelector('[name="service"]').value,
+          message: form.querySelector('[name="message"]').value,
+        })
+      });
+      if (res.ok) {
+        form.querySelectorAll('h3,div.form__row,div.form__group,button,p.form__note').forEach(el => el.style.display = 'none');
+        document.getElementById('formThanks').style.display = 'block';
+      } else { throw new Error(); }
+    } catch {
+      btn.textContent = 'Hiba – írj emailben!';
+      btn.style.background = '#c0392b';
+      setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.disabled = false; }, 4000);
     }
-    var sec = document.getElementById('kapcsolat');
-    if (sec) window.scrollTo({ top: sec.offsetTop - 80, behavior: 'smooth' });
-  }
-})();
+  });
+}

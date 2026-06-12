@@ -792,16 +792,7 @@
       <div class="price-badge">💚 Egy alkalom kb. 90 perc · 18 000 Ft</div>
     </div>
     <div class="kapcsolat__form">
-      <form action="https://formsubmit.co/csanad.peter.czarth@gmail.com" method="POST" class="form" id="contactForm">
-        <input type="hidden" name="_subject" value="Új érdeklődő – lelkekgyogyasza.hu">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://lelkekgyogyasza.hu/?poslan=1">
-        <div id="formThanks" style="display:none;text-align:center;padding:40px 20px;">
-          <div class="form__thanks-icon">✓</div>
-          <h3>Köszönöm az üzenetedet!</h3>
-          <p>Általában 1–2 munkanapon belül visszajelzek.<br>Addig is sok szeretettel várlak!</p>
-        </div>
+      <form class="form" id="contactForm">
         <h3 class="form__title">Írj nekem</h3>
         <div class="form__row">
           <div class="form__group">
@@ -832,6 +823,10 @@
         </div>
         <button type="submit" class="btn btn--primary btn--full">Elküldöm →</button>
         <p class="form__note">🔒 Adataidat bizalmasan kezelem, harmadik félnek nem adom át.</p>
+        <div id="formThanks" style="display:none;margin-top:1.5rem;text-align:center;padding:1.5rem;background:var(--sage-pale);border-radius:var(--radius);">
+          <div class="form__thanks-icon">✓</div>
+          <p style="color:var(--sage-deep);font-weight:600;font-size:1.05rem;margin-top:.75rem">Köszönöm! 48 órán belül keresni fogom!</p>
+        </div>
       </form>
     </div>
   </div>
