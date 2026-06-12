@@ -145,10 +145,10 @@ if (form) {
         body: new FormData(form),
         headers: { Accept: 'application/json' }
       });
-      if (res.ok) {
-        btn.textContent = '✓ Elküldve! Hamarosan visszajelzek.';
-        btn.style.background = '#3D7A4A';
-        form.reset();
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success !== 'false') {
+        form.style.display = 'none';
+        document.getElementById('formThanks').style.display = 'block';
       } else {
         throw new Error();
       }

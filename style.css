@@ -269,6 +269,10 @@ p + p { margin-top: .8rem; }
 .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--sage); background: var(--white); }
 .form__group textarea { resize: vertical; min-height: 120px; }
 .form__note { font-size: .73rem; color: var(--text-soft); margin-top: .85rem; text-align: center; line-height: 1.5; }
+.form__thanks { text-align: center; padding: 3rem 1.5rem; }
+.form__thanks-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--sage); color: #fff; font-size: 1.8rem; line-height: 64px; margin: 0 auto 1.25rem; }
+.form__thanks h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--sage-deep); margin-bottom: .75rem; }
+.form__thanks p { color: var(--text-soft); line-height: 1.7; }
 .map-wrap { margin-top: 3.5rem; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
 
 /* ===== LIGHTBOX ===== */
