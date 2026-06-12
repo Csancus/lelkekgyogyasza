@@ -42,6 +42,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://lelkekgyogyasza.hu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://lelkekgyogyasza.hu/blog"},{"@type":"ListItem","position":3,"name":"A baba sejtjei az anyában – Magzati-anyai mikrokimérizmus","item":"https://lelkekgyogyasza.hu/blog/magzati-mikrokimerizmus"}]}
+  </script>
 </head>
 <body>
 
@@ -81,7 +84,13 @@
 
 <main>
   <div class="post-wrap">
-    <a href="/blog" class="post__back">← Vissza a bloghoz</a>
+    <nav class="breadcrumb" aria-label="Navigációs útvonal">
+  <ol class="breadcrumb__list">
+    <li class="breadcrumb__item"><a href="/">Főoldal</a></li>
+    <li class="breadcrumb__item"><a href="/blog">Blog</a></li>
+    <li class="breadcrumb__item">A baba sejtjei az anyában – Magzati-anyai mikrokimérizmus</li>
+  </ol>
+</nav>
     <header>
       <span class="post__cat">Anyaság · Tudomány</span>
       <h1 class="post__title">A baba sejtjei az anyában – Magzati-anyai mikrokimérizmus</h1>

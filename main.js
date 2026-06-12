@@ -145,10 +145,11 @@ if (form) {
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({
           _subject: 'Új érdeklődő – lelkekgyogyasza.hu',
-          name: form.querySelector('[name="name"]').value,
-          email: form.querySelector('[name="email"]').value,
-          service: form.querySelector('[name="service"]').value,
-          message: form.querySelector('[name="message"]').value,
+          _template: 'table',
+          'Név': form.querySelector('[name="name"]').value,
+          'Email': form.querySelector('[name="email"]').value,
+          'Érdekli': form.querySelector('[name="service"]').value,
+          'Üzenet': form.querySelector('[name="message"]').value,
         })
       });
       if (res.ok) {

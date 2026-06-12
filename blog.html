@@ -21,6 +21,9 @@
     "author": { "@type": "Person", "name": "Berényi Ildikó" }
   }
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://lelkekgyogyasza.hu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://lelkekgyogyasza.hu/blog"}]}
+  </script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,6 +66,13 @@
     </div>
   </div>
 </header>
+
+<nav class="breadcrumb" aria-label="Navigációs útvonal">
+  <ol class="breadcrumb__list">
+    <li class="breadcrumb__item"><a href="/">Főoldal</a></li>
+    <li class="breadcrumb__item">Blog</li>
+  </ol>
+</nav>
 
 <!-- BLOG HERO -->
 <section class="blog-hero">

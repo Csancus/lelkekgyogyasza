@@ -11,6 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="subpage.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://lelkekgyogyasza.hu/"},{"@type":"ListItem","position":2,"name":"Egyéni Családállítás","item":"https://lelkekgyogyasza.hu/egyeni-csaladalitas"}]}
+  </script>
 </head>
 <body>
 <header class="nav" id="nav">
@@ -21,13 +24,12 @@
       </span>
       Lelkek gyógyásza
     </a>
+    <a href="tel:+36706182877" class="nav__phone-mobile">📞 +36 70 618 2877</a>
     <button class="nav__toggle" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
     <nav class="nav__menu" id="navMenu">
       <a href="index.html#bemutatkozas">Bemutatkozás</a>
       <div class="nav__item--dropdown">
-        <button class="nav__dropdown-btn" aria-haspopup="true" aria-expanded="false" id="navDropdownBtn">
-          Módszerek
-        </button>
+        <a href="index.html#modszerek" class="nav__dropdown-btn" id="navDropdownBtn">Módszerek</a>
         <div class="nav__dropdown" id="navDropdown" role="menu">
           <a href="kineziologia.html" role="menuitem">Kineziológia</a>
           <a href="egyeni-csaladalitas.html" role="menuitem">Egyéni Családállítás</a>
@@ -37,11 +39,24 @@
           <a href="erzelmi-kod.html" role="menuitem">Érzelmi Kód – Stresszoldás</a>
         </div>
       </div>
+      <a href="blog.html">Blog</a>
       <a href="index.html#velemenyek">Vélemények</a>
-      <a href="index.html#kapcsolat" class="nav__cta">Időpontfoglalás</a>
+      <a href="index.html#gyik">GYIK</a>
+      <a href="index.html#kapcsolat" class="nav__cta nav__cta--mobile-only">Időpontfoglalás</a>
     </nav>
+    <div class="nav__actions">
+      <a href="index.html#kapcsolat" class="nav__cta">Időpontfoglalás</a>
+      <a href="tel:+36706182877" class="nav__cta nav__phone-cta">📞 +36 70 618 2877</a>
+    </div>
   </div>
 </header>
+
+<nav class="breadcrumb" aria-label="Navigációs útvonal">
+  <ol class="breadcrumb__list">
+    <li class="breadcrumb__item"><a href="/">Főoldal</a></li>
+    <li class="breadcrumb__item">Egyéni Családállítás</li>
+  </ol>
+</nav>
 
 <section class="subhero">
   <div class="subhero__overlay"></div>
