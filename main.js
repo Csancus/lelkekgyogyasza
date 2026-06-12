@@ -130,9 +130,14 @@ if (carouselItems.length) {
   });
 })();
 
-// Form submit feedback
+// EmailJS config — replace with real values from emailjs.com
+const EMAILJS_SERVICE  = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE = 'YOUR_TEMPLATE_ID';
+const EMAILJS_KEY      = 'YOUR_PUBLIC_KEY';
+
 const form = document.getElementById('contactForm');
 if (form) {
+  emailjs.init({ publicKey: EMAILJS_KEY });
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
@@ -140,22 +145,12 @@ if (form) {
     btn.textContent = 'Küldés...';
     btn.disabled = true;
     try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' }
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && data.ok) {
-        form.style.display = 'none';
-        document.getElementById('formThanks').style.display = 'block';
-      } else {
-        throw new Error();
-      }
+      await emailjs.sendForm(EMAILJS_SERVICE, EMAILJS_TEMPLATE, form);
+      form.style.display = 'none';
+      document.getElementById('formThanks').style.display = 'block';
     } catch {
       btn.textContent = 'Hiba – próbáld meg emailben!';
       btn.style.background = '#c0392b';
-      btn.disabled = false;
       setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.disabled = false; }, 4000);
     }
   });
