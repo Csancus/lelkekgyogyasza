@@ -198,11 +198,11 @@ p + p { margin-top: .8rem; }
 .services-cta h3 { font-size: 1.5rem; color: var(--text); margin-bottom: 1.5rem; }
 
 /* ===== PHOTO STRIPS ===== */
-.photo-strip { width:100%; height:360px; background-size:cover; background-position:center; position:relative; overflow:hidden; }
-.photo-strip__fade { position:absolute; left:0; right:0; height:55%; z-index:1; pointer-events:none; }
+.photo-strip { width:100%; height:520px; background-size:cover; background-position:center; position:relative; overflow:hidden; }
+.photo-strip__fade { position:absolute; left:0; right:0; height:30%; z-index:1; pointer-events:none; }
 .photo-strip__fade--top { top:0; }
 .photo-strip__fade--bottom { bottom:0; }
-@media (max-width:640px) { .photo-strip { height:220px; } }
+@media (max-width:640px) { .photo-strip { height:300px; } }
 
 /* ===== MIBEN SEGÍTHET ===== */
 .segitseg { background: url("images/havasi-gyopar.jpg") center/cover no-repeat; position: relative; }
