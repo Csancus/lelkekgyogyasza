@@ -17,26 +17,13 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   toggle.classList.remove('open');
 }));
 
-// Service accordion
-document.querySelectorAll('.service__header').forEach(btn => {
+// Service card expand/collapse
+document.querySelectorAll('.service-card__toggle').forEach(btn => {
   btn.addEventListener('click', () => {
-    const service = btn.closest('.service');
-    const body = document.getElementById(btn.getAttribute('aria-controls'));
-    const isOpen = service.classList.contains('open');
-
-    // Close all
-    document.querySelectorAll('.service.open').forEach(s => {
-      s.classList.remove('open');
-      s.querySelector('.service__header').setAttribute('aria-expanded', 'false');
-      s.querySelector('.service__body').hidden = true;
-    });
-
-    // Open clicked (if it was closed)
-    if (!isOpen) {
-      service.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
-      body.hidden = false;
-    }
+    const card = btn.closest('.service-card');
+    const isExpanded = card.classList.contains('expanded');
+    card.classList.toggle('expanded', !isExpanded);
+    btn.setAttribute('aria-expanded', String(!isExpanded));
   });
 });
 
