@@ -1,2 +1,0 @@
-# lelkekgyogyasza
-lelkekgyogyasza
