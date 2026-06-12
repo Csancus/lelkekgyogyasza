@@ -17,22 +17,16 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   toggle.classList.remove('open');
 }));
 
-// Nav dropdown
+// Nav dropdown – mobile: tap to toggle
 const dropdownBtn = document.getElementById('navDropdownBtn');
 const navDropdown = document.getElementById('navDropdown');
 if (dropdownBtn && navDropdown) {
   dropdownBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const open = navDropdown.classList.toggle('open');
-    dropdownBtn.classList.toggle('open', open);
-    dropdownBtn.setAttribute('aria-expanded', String(open));
+    if (window.innerWidth <= 640) {
+      e.preventDefault();
+      navDropdown.classList.toggle('open');
+    }
   });
-  document.addEventListener('click', () => {
-    navDropdown.classList.remove('open');
-    dropdownBtn.classList.remove('open');
-    dropdownBtn.setAttribute('aria-expanded', 'false');
-  });
-  navDropdown.addEventListener('click', (e) => e.stopPropagation());
 }
 
 // Service card expand/collapse
