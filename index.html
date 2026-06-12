@@ -544,21 +544,21 @@
       <h2>Gondolatok a változásról</h2>
     </div>
     <div class="gallery-grid">
-      <a href="images/fulls/01.jpg" class="gallery-item" target="_blank" rel="noopener">
-        <img src="images/thumbs/01.jpg" alt="Legjobb módszer" loading="lazy">
-        <div class="gallery-item__overlay"><span>Legjobb módszer</span></div>
+      <a href="#" class="gallery-item" data-lightbox="gallery" data-src="images/fulls/01.jpg" data-caption="A legjobb módszer önmagunk felvidítására, ha felvidítunk valaki mást. — Mark Twain">
+        <img src="images/thumbs/01.jpg" alt="Mark Twain idézet – A legjobb módszer önmagunk felvidítására" loading="lazy">
+        <div class="gallery-item__overlay"><span>Mark Twain</span></div>
       </a>
-      <a href="images/fulls/02.jpg" class="gallery-item" target="_blank" rel="noopener">
-        <img src="images/thumbs/02.jpg" alt="Bőjte Csaba idézet" loading="lazy">
-        <div class="gallery-item__overlay"><span>Bőjte Csaba idézet</span></div>
+      <a href="#" class="gallery-item" data-lightbox="gallery" data-src="images/fulls/02.jpg" data-caption="Legyél azzá, amiért születtél, merd vállalni önmagad, és boldog leszel! — Böjte Csaba">
+        <img src="images/thumbs/02.jpg" alt="Böjte Csaba idézet – Legyél azzá, amiért születtél" loading="lazy">
+        <div class="gallery-item__overlay"><span>Böjte Csaba</span></div>
       </a>
-      <a href="images/fulls/03.jpg" class="gallery-item" target="_blank" rel="noopener">
-        <img src="images/thumbs/03.jpg" alt="Az élet apró örömei" loading="lazy">
-        <div class="gallery-item__overlay"><span>Az élet apró örömei</span></div>
+      <a href="#" class="gallery-item" data-lightbox="gallery" data-src="images/fulls/03.jpg" data-caption="Sokan elengedik az élet apró örömeit, miközben a nagy boldogságot várják. — Pearl Sydenstricker Buck">
+        <img src="images/thumbs/03.jpg" alt="Pearl Buck idézet – Az élet apró örömeinek értéke" loading="lazy">
+        <div class="gallery-item__overlay"><span>Pearl Buck</span></div>
       </a>
-      <a href="images/fulls/04.jpg" class="gallery-item" target="_blank" rel="noopener">
-        <img src="images/thumbs/04.jpg" alt="Boldogság" loading="lazy">
-        <div class="gallery-item__overlay"><span>Boldogság</span></div>
+      <a href="#" class="gallery-item" data-lightbox="gallery" data-src="images/fulls/04.jpg" data-caption="Semmi sem ápolja úgy a szépséget, mint a boldogság. — Marguerite Gardiner">
+        <img src="images/thumbs/04.jpg" alt="Marguerite Gardiner idézet – A szépség és a boldogság" loading="lazy">
+        <div class="gallery-item__overlay"><span>Marguerite Gardiner</span></div>
       </a>
     </div>
   </div>
@@ -584,7 +584,6 @@
     <div class="reviews">
       <div class="review">
         <div class="review__header">
-          <div class="review__avatar">ÁV</div>
           <div class="review__meta">
             <div class="review__author">Ágnes Varga</div>
             <div class="review__service">Egyéni Családállítás</div>
@@ -596,7 +595,6 @@
       </div>
       <div class="review">
         <div class="review__header">
-          <div class="review__avatar">DM</div>
           <div class="review__meta">
             <div class="review__author">Dorottya Mayer</div>
             <div class="review__service">Kineziológia · TEK</div>
@@ -608,7 +606,6 @@
       </div>
       <div class="review">
         <div class="review__header">
-          <div class="review__avatar">JF</div>
           <div class="review__meta">
             <div class="review__author">Johanna Fülöp</div>
             <div class="review__service">Holisztikus módszerek</div>
@@ -620,7 +617,6 @@
       </div>
       <div class="review">
         <div class="review__header">
-          <div class="review__avatar">ÁB</div>
           <div class="review__meta">
             <div class="review__author">Ágnes Bartalis</div>
             <div class="review__service">TEK · Stresszoldás</div>
@@ -632,7 +628,6 @@
       </div>
       <div class="review">
         <div class="review__header">
-          <div class="review__avatar">J</div>
           <div class="review__meta">
             <div class="review__author">Janka</div>
             <div class="review__service">Kineziológia</div>
@@ -644,7 +639,6 @@
       </div>
       <div class="review">
         <div class="review__header">
-          <div class="review__avatar">ZB</div>
           <div class="review__meta">
             <div class="review__author">Zsuzsanna Barka</div>
             <div class="review__service">Stresszoldás · EFT</div>
@@ -772,5 +766,16 @@
 </footer>
 
 <script src="main.js"></script>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Képnéző">
+  <button class="lightbox__close" id="lbClose" aria-label="Bezárás">✕</button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Előző">&#8249;</button>
+  <div class="lightbox__stage">
+    <img class="lightbox__img" id="lbImg" src="" alt="">
+    <p class="lightbox__caption" id="lbCaption"></p>
+  </div>
+  <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Következő">&#8250;</button>
+</div>
 </body>
 </html>
