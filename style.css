@@ -92,7 +92,7 @@ p + p { margin-top: .8rem; }
 .nav__item--dropdown { position: relative; display: flex; align-items: center; }
 .nav__dropdown-btn { font-size: .875rem; font-weight: 500; color: var(--text-soft); transition: color var(--transition); display: flex; align-items: center; gap: .3rem; padding: 0; background: none; border: none; cursor: pointer; }
 .nav__dropdown-btn:hover, .nav__dropdown-btn.open { color: var(--sage-deep); }
-.nav__dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--white); border-radius: var(--radius); padding: .5rem 0; border: 1px solid var(--border); box-shadow: var(--shadow-md); min-width: 230px; z-index: 200; }
+.nav__dropdown { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: var(--white); border-radius: var(--radius); padding: 10px 0 .5rem; border: 1px solid var(--border); box-shadow: var(--shadow-md); min-width: 230px; z-index: 200; }
 .nav__item--dropdown:hover .nav__dropdown { display: block; animation: fadeIn .15s ease; }
 .nav__dropdown.open { display: block; }
 @keyframes fadeIn { from{opacity:0;transform:translateX(-50%) translateY(-6px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
