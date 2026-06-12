@@ -1,0 +1,118 @@
+/* ===== SUBPAGE STYLES ===== */
+
+/* Sub-hero (smaller hero for inner pages) */
+.subhero {
+  min-height: 38vh; display: flex; align-items: center; justify-content: center;
+  background: url("images/hero-bg.jpg") center 40% / cover no-repeat;
+  position: relative; padding-top: 70px; text-align: center;
+}
+.subhero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(170deg, rgba(25,42,28,.82) 0%, rgba(45,70,40,.7) 100%);
+}
+.subhero__content { position: relative; z-index: 2; padding: 3rem 1.75rem; }
+.subhero__tag {
+  font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); margin-bottom: .75rem;
+}
+.subhero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.5rem); color: #fff; line-height: 1.1; margin-bottom: .75rem;
+}
+.subhero__lead { font-size: .95rem; color: rgba(255,255,255,.7); letter-spacing: .06em; }
+
+/* Breadcrumb */
+.breadcrumb { padding: 1rem 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.breadcrumb__inner { display: flex; align-items: center; gap: .5rem; font-size: .8rem; color: var(--text-soft); }
+.breadcrumb__inner a { color: var(--sage-deep); }
+.breadcrumb__inner a:hover { text-decoration: underline; }
+
+/* Subpage content layout */
+.subpage-content { padding: 4rem 0 6rem; background: var(--cream); }
+.subpage-container { max-width: 820px; }
+
+.subpage-intro { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+
+/* Method blocks */
+.method-block {
+  background: var(--white); border-radius: var(--radius-lg); padding: 2.5rem;
+  border: 1px solid var(--border); margin-bottom: 2rem;
+  box-shadow: 0 2px 16px rgba(78,62,45,.06);
+}
+.method-block__header { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.5rem; }
+.method-block__num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3rem; color: var(--sage-pale); font-weight: 700; line-height: 1; flex-shrink: 0;
+}
+.method-block h2 {
+  font-size: clamp(1.35rem, 3vw, 1.75rem); margin: 0 0 1.25rem; color: var(--text);
+}
+.method-block__header h2 { margin: 0; }
+.method-block h3 {
+  font-size: 1rem; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--sage-deep); margin: 1.75rem 0 .75rem; font-family: inherit; font-weight: 700;
+}
+.method-block p { font-size: .93rem; margin-bottom: .75rem; }
+
+/* Method list */
+.method-list { list-style: none; padding: 0; margin: .5rem 0 1rem; }
+.method-list li {
+  font-size: .9rem; color: var(--text-soft); padding: .4rem 0 .4rem 1.6rem;
+  position: relative; line-height: 1.65; border-bottom: 1px solid rgba(221,213,200,.4);
+}
+.method-list li:last-child { border-bottom: none; }
+.method-list li::before { content: '🌿'; position: absolute; left: 0; top: .45rem; font-size: .65rem; }
+.method-list li strong { color: var(--text); }
+
+/* Steps */
+.steps { display: flex; flex-direction: column; gap: 1.25rem; margin: 1rem 0; }
+.step { display: flex; gap: 1.25rem; align-items: flex-start; }
+.step__num {
+  flex-shrink: 0; width: 2.25rem; height: 2.25rem; background: var(--sage-deep);
+  color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; font-weight: 700; margin-top: .1rem;
+}
+.step strong { display: block; font-size: .92rem; color: var(--text); margin-bottom: .25rem; }
+.step p { font-size: .88rem; margin: 0; }
+
+/* Number grid for numerology */
+.num-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin: 1rem 0; }
+.num-card {
+  background: var(--cream); border-radius: var(--radius-sm); padding: 1rem .85rem;
+  border: 1px solid var(--border); text-align: center;
+}
+.num-card__num { font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; color: var(--sage-deep); line-height: 1; margin-bottom: .35rem; }
+.num-card p { font-size: .78rem; color: var(--text-soft); margin: 0; line-height: 1.4; }
+
+/* CTA block */
+.subpage-cta {
+  background: linear-gradient(135deg, var(--sage-pale) 0%, var(--rose-pale) 100%);
+  border-radius: var(--radius-lg); padding: 3rem; text-align: center;
+  border: 1px solid var(--cream-dark); margin-top: 1rem;
+}
+.subpage-cta h2 { font-size: 1.75rem; margin-bottom: .75rem; }
+.subpage-cta p { margin-bottom: 1.75rem; font-size: 1rem; }
+
+/* Flower category pills */
+.flower-group { margin-bottom: 1.25rem; }
+.flower-group__label {
+  font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--sage-deep); margin-bottom: .5rem; display: block;
+}
+.flower-pills { display: flex; flex-wrap: wrap; gap: .4rem; }
+.flower-pill {
+  background: var(--sage-pale); color: var(--sage-deep);
+  font-size: .75rem; font-weight: 500; padding: .3rem .75rem; border-radius: 50px;
+}
+.flower-pill--note {
+  background: var(--rose-pale); color: var(--rose);
+  font-size: .72rem; font-style: italic; padding: .2rem .6rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .method-block { padding: 1.5rem; }
+  .subhero { min-height: 30vh; }
+  .num-grid { grid-template-columns: repeat(3, 1fr); }
+  .step { gap: .85rem; }
+}

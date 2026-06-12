@@ -17,6 +17,24 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   toggle.classList.remove('open');
 }));
 
+// Nav dropdown
+const dropdownBtn = document.getElementById('navDropdownBtn');
+const navDropdown = document.getElementById('navDropdown');
+if (dropdownBtn && navDropdown) {
+  dropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = navDropdown.classList.toggle('open');
+    dropdownBtn.classList.toggle('open', open);
+    dropdownBtn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', () => {
+    navDropdown.classList.remove('open');
+    dropdownBtn.classList.remove('open');
+    dropdownBtn.setAttribute('aria-expanded', 'false');
+  });
+  navDropdown.addEventListener('click', (e) => e.stopPropagation());
+}
+
 // Service card expand/collapse
 document.querySelectorAll('.service-card__toggle').forEach(btn => {
   btn.addEventListener('click', () => {
