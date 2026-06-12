@@ -130,28 +130,16 @@ if (carouselItems.length) {
   });
 })();
 
-// EmailJS config — replace with real values from emailjs.com
-const EMAILJS_SERVICE  = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE = 'YOUR_TEMPLATE_ID';
-const EMAILJS_KEY      = 'YOUR_PUBLIC_KEY';
-
-const form = document.getElementById('contactForm');
-if (form) {
-  emailjs.init({ publicKey: EMAILJS_KEY });
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    const orig = btn.textContent;
-    btn.textContent = 'Küldés...';
-    btn.disabled = true;
-    try {
-      await emailjs.sendForm(EMAILJS_SERVICE, EMAILJS_TEMPLATE, form);
-      form.style.display = 'none';
-      document.getElementById('formThanks').style.display = 'block';
-    } catch {
-      btn.textContent = 'Hiba – próbáld meg emailben!';
-      btn.style.background = '#c0392b';
-      setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.disabled = false; }, 4000);
+// Show thank-you message after FormSubmit.co redirect
+(function () {
+  if (window.location.search.indexOf('poslan=1') > -1) {
+    var form = document.getElementById('contactForm');
+    var thanks = document.getElementById('formThanks');
+    if (form && thanks) {
+      form.querySelectorAll('input:not([type=hidden]),select,textarea,button').forEach(function(el){ el.style.display = 'none'; });
+      thanks.style.display = 'block';
     }
-  });
-}
+    var sec = document.getElementById('kapcsolat');
+    if (sec) window.scrollTo({ top: sec.offsetTop - 80, behavior: 'smooth' });
+  }
+})();

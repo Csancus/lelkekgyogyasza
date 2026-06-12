@@ -792,12 +792,16 @@
       <div class="price-badge">💚 Egy alkalom kb. 90 perc · 18 000 Ft</div>
     </div>
     <div class="kapcsolat__form">
-      <div class="form__thanks" id="formThanks" style="display:none">
-        <div class="form__thanks-icon">✓</div>
-        <h3>Köszönöm az üzenetedet!</h3>
-        <p>Általában 1–2 munkanapon belül visszajelzek.<br>Addig is sok szeretettel várlak!</p>
-      </div>
-      <form class="form" id="contactForm">
+      <form action="https://formsubmit.co/csanad.peter.czarth@gmail.com" method="POST" class="form" id="contactForm">
+        <input type="hidden" name="_subject" value="Új érdeklődő – lelkekgyogyasza.hu">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://lelkekgyogyasza.hu/?poslan=1">
+        <div id="formThanks" style="display:none;text-align:center;padding:40px 20px;">
+          <div class="form__thanks-icon">✓</div>
+          <h3>Köszönöm az üzenetedet!</h3>
+          <p>Általában 1–2 munkanapon belül visszajelzek.<br>Addig is sok szeretettel várlak!</p>
+        </div>
         <h3 class="form__title">Írj nekem</h3>
         <div class="form__row">
           <div class="form__group">
@@ -879,7 +883,6 @@
   </div>
   <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Következő">&#8250;</button>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
