@@ -45,6 +45,20 @@ document.querySelectorAll('.service-card__toggle').forEach(btn => {
   });
 });
 
+// Hero carousel
+const carouselItems = document.querySelectorAll('.hero__carousel-item');
+const carouselDots = document.querySelectorAll('.hero__carousel-dots span');
+if (carouselItems.length) {
+  let current = 0;
+  setInterval(() => {
+    carouselItems[current].classList.remove('active');
+    carouselDots[current].classList.remove('active');
+    current = (current + 1) % carouselItems.length;
+    carouselItems[current].classList.add('active');
+    carouselDots[current].classList.add('active');
+  }, 3000);
+}
+
 // Form submit feedback
 const form = document.getElementById('contactForm');
 if (form) {
