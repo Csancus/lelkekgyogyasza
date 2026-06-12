@@ -50,14 +50,80 @@ const carouselItems = document.querySelectorAll('.hero__carousel-item');
 const carouselDots = document.querySelectorAll('.hero__carousel-dots span');
 if (carouselItems.length) {
   let current = 0;
-  setInterval(() => {
+  function goTo(i) {
     carouselItems[current].classList.remove('active');
     carouselDots[current].classList.remove('active');
-    current = (current + 1) % carouselItems.length;
+    current = i;
     carouselItems[current].classList.add('active');
     carouselDots[current].classList.add('active');
-  }, 3000);
+  }
+  let timer = setInterval(() => goTo((current + 1) % carouselItems.length), 5000);
+  carouselDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(i);
+      timer = setInterval(() => goTo((current + 1) % carouselItems.length), 5000);
+    });
+  });
 }
+
+// Lightbox
+(function(){
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCaption');
+  const lbCounter = document.createElement('div');
+  lbCounter.className = 'lightbox__counter';
+  lb.appendChild(lbCounter);
+
+  let items = [], cur = 0;
+
+  function show(i) {
+    cur = (i + items.length) % items.length;
+    lbImg.style.opacity = '0';
+    setTimeout(() => {
+      lbImg.src = items[cur].src;
+      lbImg.alt = items[cur].caption;
+      lbCap.textContent = items[cur].caption;
+      lbCounter.textContent = (cur + 1) + ' / ' + items.length;
+      lbImg.style.opacity = '1';
+    }, 150);
+  }
+
+  function open(all, idx) {
+    items = all;
+    show(idx);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-lightbox]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      const grp = el.dataset.lightbox;
+      const all = [...document.querySelectorAll('[data-lightbox="' + grp + '"]')]
+        .map(a => ({ src: a.dataset.src, caption: a.dataset.caption || '' }));
+      const idx = [...document.querySelectorAll('[data-lightbox="' + grp + '"]')].indexOf(el);
+      open(all, idx);
+    });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', () => show(cur - 1));
+  document.getElementById('lbNext').addEventListener('click', () => show(cur + 1));
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
+})();
 
 // Form submit feedback
 const form = document.getElementById('contactForm');
