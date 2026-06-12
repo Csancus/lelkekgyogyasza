@@ -146,7 +146,7 @@ if (form) {
         headers: { Accept: 'application/json' }
       });
       const data = await res.json().catch(() => ({}));
-      if (res.ok && data.success !== 'false') {
+      if (res.ok && data.ok) {
         form.style.display = 'none';
         document.getElementById('formThanks').style.display = 'block';
       } else {
