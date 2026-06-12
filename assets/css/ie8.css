@@ -1,0 +1,134 @@
+/*
+	Big Picture by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/* Section/Article */
+
+	section > .last-child,
+	article > .last-child,
+	section.last-child,
+	article.last-child {
+		margin-bottom: 0;
+	}
+
+/* Form */
+
+	form input[type="text"],
+	form input[type="email"],
+	form input[type="password"],
+	form select,
+	form textarea {
+		position: relative;
+		-ms-behavior: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/assets/css/assets/js/ie/PIE.htc");
+		border: solid 1px #ccc;
+	}
+
+/* Button */
+
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"],
+	.button,
+	button {
+		position: relative;
+		-ms-behavior: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/assets/css/assets/js/ie/PIE.htc");
+	}
+
+		input[type="button"].down,
+		input[type="submit"].down,
+		input[type="reset"].down,
+		.button.down,
+		button.down {
+			text-indent: 0;
+		}
+
+/* Intro */
+
+	#intro {
+		-ms-behavior: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/assets/css/assets/js/ie/backgroundsize.min.htc");
+		background: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/images/intro.jpg");
+		background-size: cover;
+	}
+
+		#intro .content {
+			position: relative;
+			z-index: 1;
+		}
+
+		#intro:after {
+			content: '';
+			background: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/assets/css/images/overlay.png");
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+/* One */
+
+	#one {
+		-ms-behavior: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/assets/css/assets/js/ie/backgroundsize.min.htc");
+		background: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/images/one.jpg");
+		background-size: cover;
+	}
+
+		#one .content {
+			position: relative;
+			z-index: 1;
+		}
+
+		#one.left:before, #one.right:after {
+			content: '';
+			background: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/assets/css/images/overlay.png");
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+/* Two */
+
+	#two {
+		-ms-behavior: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/assets/css/assets/js/ie/backgroundsize.min.htc");
+		background: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/images/two.jpg");
+		background-size: cover;
+	}
+
+		#two .content {
+			position: relative;
+			z-index: 1;
+		}
+
+		#two.left:before, #two.right:after {
+			content: '';
+			background: url("/web/20220311112759im_/http://lelkekgyogyasza.hu/assets/css/images/overlay.png");
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+/*
+     FILE ARCHIVED ON 11:27:59 Mar 11, 2022 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 21:26:15 Jun 12, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.506
+  exclusion.robots: 0.057
+  exclusion.robots.policy: 0.048
+  esindex: 0.01
+  cdx.remote: 13.632
+  LoadShardBlock: 255.162 (3)
+  PetaboxLoader3.datanode: 249.049 (4)
+  PetaboxLoader3.resolve: 117.046 (2)
+  load_resource: 199.579
+*/

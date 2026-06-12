@@ -1,0 +1,37 @@
+/*
+	Big Picture by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/* Loader */
+
+	body:before, body:after {
+		display: none !important;
+	}
+
+/* Poptrox */
+
+	.poptrox-popup .loader {
+		display: none !important;
+	}
+/*
+     FILE ARCHIVED ON 11:27:59 Mar 11, 2022 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 21:26:16 Jun 12, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.476
+  exclusion.robots: 0.035
+  exclusion.robots.policy: 0.027
+  esindex: 0.009
+  cdx.remote: 15.222
+  LoadShardBlock: 47.658 (3)
+  PetaboxLoader3.datanode: 64.472 (4)
+  PetaboxLoader3.resolve: 77.497 (2)
+  load_resource: 168.898
+*/
