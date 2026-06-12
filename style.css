@@ -120,8 +120,7 @@ p + p { margin-top: .8rem; }
 @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(10px)} }
 
 /* ===== VERS SECTION ===== */
-.vers-section { background: url("images/repce-mezo.jpg") center/cover no-repeat; padding: 5.5rem 0; position: relative; overflow: hidden; text-align: center; }
-.vers-section::before { content:''; position:absolute; inset:0; background:linear-gradient(160deg,rgba(30,59,32,.9) 0%,rgba(42,77,44,.86) 50%,rgba(26,53,32,.9) 100%); z-index:0; }
+.vers-section { background: linear-gradient(160deg, #1E3B20 0%, #2A4D2C 50%, #1A3520 100%); padding: 5.5rem 0; position: relative; overflow: hidden; text-align: center; }
 .vers-deco { position: absolute; pointer-events: none; width: 160px; height: 320px; }
 .vers-deco--left { left: -2rem; top: 50%; transform: translateY(-50%); }
 .vers-deco--right { right: -2rem; top: 50%; transform: translateY(-50%) scaleX(-1); }
@@ -129,7 +128,7 @@ p + p { margin-top: .8rem; }
 .vers-inner { max-width: 680px; margin: 0 auto; padding: 0 1.75rem; position: relative; z-index: 2; }
 .vers-label { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 2rem; }
 .vers-text { border: none; padding: 0; margin: 0; }
-.vers-text p { font-family: var(--font-head); font-size: clamp(1rem, 2.5vw, 1.2rem); font-style: italic; color: rgba(255,255,255,.88); line-height: 2; margin-bottom: 1.75rem; }
+.vers-text p { font-family: var(--font-body); font-size: clamp(.95rem, 2vw, 1.1rem); font-style: normal; color: rgba(255,255,255,.92); line-height: 1.95; margin-bottom: 1.75rem; letter-spacing: .01em; }
 .vers-text p:last-child { margin-bottom: 0; }
 .vers-text p strong { color: rgba(200,235,195,.95); font-style: normal; }
 
