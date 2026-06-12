@@ -266,8 +266,8 @@ p + p { margin-top: .8rem; }
 .lightbox { display:none; position:fixed; inset:0; z-index:600; background:rgba(0,0,0,.93); align-items:center; justify-content:center; }
 .lightbox.open { display:flex; animation:lbIn .2s ease; }
 @keyframes lbIn { from{opacity:0} to{opacity:1} }
-.lightbox__stage { display:flex; flex-direction:column; align-items:center; gap:1rem; max-width:92vw; max-height:92vh; }
-.lightbox__img { max-width:88vw; max-height:78vh; object-fit:contain; border-radius:10px; box-shadow:0 12px 60px rgba(0,0,0,.7); display:block; transition:opacity .2s; }
+.lightbox__stage { display:flex; flex-direction:column; align-items:center; gap:1rem; width:min(92vw,900px); height:min(88vh,720px); }
+.lightbox__img { flex:1; width:100%; min-height:0; object-fit:contain; border-radius:10px; box-shadow:0 12px 60px rgba(0,0,0,.7); display:block; transition:opacity .2s; }
 .lightbox__caption { color:rgba(255,255,255,.78); font-size:.9rem; text-align:center; max-width:640px; font-style:italic; line-height:1.55; padding:0 1rem; }
 .lightbox__close { position:fixed; top:1.1rem; right:1.3rem; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:white; font-size:1.2rem; cursor:pointer; z-index:601; opacity:.8; transition:all .2s; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 .lightbox__close:hover { opacity:1; background:rgba(255,255,255,.22); }
