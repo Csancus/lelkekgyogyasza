@@ -383,7 +383,7 @@ p + p { margin-top: .8rem; }
   /* Header bar */
   .nav__inner { padding: 0 12px; display: flex; align-items: center; gap: 0; }
   .nav__logo { flex: 1 1 0; min-width: 0; font-size: .9rem; overflow: hidden; white-space: nowrap; }
-  .nav__phone-mobile { display: flex; align-items: center; gap: .2rem; font-size: .72rem; font-weight: 600; color: var(--sage-deep); white-space: nowrap; flex: 0 0 auto; padding: 0 8px; }
+  .nav__phone-mobile { display: none; }
   .nav__toggle { display: flex; flex: 0 0 auto; }
   .nav__phone-cta { display: none; }
   .nav__actions { display: none; }
