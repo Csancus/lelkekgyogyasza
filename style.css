@@ -121,11 +121,10 @@ p + p { margin-top: .75rem; }
 
 /* ===== BEMUTATKOZÁS ===== */
 .bemutatkozas { background: var(--white); }
-.bemutatkozas__img .img-placeholder {
-  background: var(--green-pale); border-radius: var(--radius);
-  aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center;
-  color: var(--green); font-size: .9rem; font-weight: 500;
-  border: 2px dashed var(--green-light);
+.bemutatkozas__photo {
+  width: 100%; border-radius: var(--radius);
+  aspect-ratio: 4/5; object-fit: cover; object-position: top;
+  box-shadow: 0 8px 40px rgba(44,42,39,.15);
 }
 .bemutatkozas__text h2 { margin-bottom: 1rem; }
 .bemutatkozas__stats {
@@ -230,11 +229,26 @@ p + p { margin-top: .75rem; }
 .footer__links a:hover, .footer__contact a:hover { color: var(--white); }
 .footer__bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.25rem; text-align: center; font-size: .8rem; }
 
+/* ===== GALÉRIA ===== */
+.galeria { background: var(--beige-mid); }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.gallery-item { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 1; display: block; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item__overlay {
+  position: absolute; inset: 0; background: rgba(44,60,46,.55);
+  display: flex; align-items: flex-end; padding: 1rem;
+  opacity: 0; transition: opacity var(--transition);
+}
+.gallery-item:hover .gallery-item__overlay { opacity: 1; }
+.gallery-item__overlay span { color: var(--white); font-size: .85rem; font-weight: 500; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .container--split { grid-template-columns: 1fr; gap: 2.5rem; }
   .bemutatkozas__img { order: -1; max-width: 320px; margin: 0 auto; }
   .problems { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .reviews { grid-template-columns: 1fr 1fr; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
