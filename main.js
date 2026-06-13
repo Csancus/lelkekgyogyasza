@@ -29,16 +29,6 @@ if (dropdownBtn && navDropdown) {
   });
 }
 
-// Service card expand/collapse
-document.querySelectorAll('.service-card__toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const card = btn.closest('.service-card');
-    const isExpanded = card.classList.contains('expanded');
-    card.classList.toggle('expanded', !isExpanded);
-    btn.setAttribute('aria-expanded', String(!isExpanded));
-  });
-});
-
 // GYIK accordion
 document.querySelectorAll('.faq-item__q').forEach(btn => {
   btn.addEventListener('click', () => {
