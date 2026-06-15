@@ -1,6 +1,9 @@
 Options -Indexes
 RewriteEngine On
 
+# Redirect old erzelmi-kod URL to new slug with stresszoldas
+RewriteRule ^erzelmi-kod/?$ /erzelmi-kod-stresszoldas [R=301,L]
+
 # Remove .html extension — redirect to clean URL (301)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,NE,L]
