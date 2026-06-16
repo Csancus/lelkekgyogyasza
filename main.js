@@ -138,6 +138,7 @@ if (form) {
           _template: 'table',
           'Név': form.querySelector('[name="name"]').value,
           'Email': form.querySelector('[name="email"]').value,
+          'Telefon': form.querySelector('[name="phone"]').value,
           'Érdekli': form.querySelector('[name="service"]').value,
           'Üzenet': form.querySelector('[name="message"]').value,
         })
