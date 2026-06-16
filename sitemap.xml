@@ -31,7 +31,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lelkekgyogyasza.hu/erzelmi-kod</loc>
+    <loc>https://lelkekgyogyasza.hu/erzelmi-kod-stresszoldas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lelkekgyogyasza.hu/arak</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
