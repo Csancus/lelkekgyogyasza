@@ -235,8 +235,8 @@ p + p { margin-top: .8rem; }
 .reviews__only5 { text-align: center; margin: -1.5rem auto 2rem; display: inline-flex; align-items: center; gap: .5rem; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 50px; padding: .4rem 1.2rem; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.85); letter-spacing: .04em; width: fit-content; left: 50%; position: relative; transform: translateX(-50%); }
 .reviews { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5rem; margin-bottom: 2.75rem; }
 .review { grid-column: span 2; }
-.review:nth-child(4) { grid-column: 2 / 4; }
-.review:nth-child(5) { grid-column: 4 / 6; }
+.review:nth-child(10) { grid-column: 2 / 4; }
+.review:nth-child(11) { grid-column: 4 / 6; }
 .review { background: rgba(255,255,255,.07); border-radius: var(--radius); padding: 1.75rem; border: 1px solid rgba(255,255,255,.1); position: relative; transition: background var(--transition), transform var(--transition), box-shadow var(--transition); display: flex; flex-direction: column; }
 .review:hover { background: rgba(255,255,255,.13); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,.25); }
 .review__header { display: flex; align-items: center; justify-content: space-between; gap: .7rem; margin-bottom: 1rem; }
