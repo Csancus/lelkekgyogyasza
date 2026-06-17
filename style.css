@@ -269,6 +269,22 @@ p + p { margin-top: .8rem; }
 .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--sage); background: var(--white); }
 .form__group textarea { resize: vertical; min-height: 120px; }
 .form__note { font-size: .73rem; color: var(--text-soft); margin-top: .85rem; text-align: center; line-height: 1.5; }
+.form__checkbox { display: flex; align-items: flex-start; gap: .6rem; margin-bottom: 1.25rem; }
+.form__checkbox input[type="checkbox"] { flex-shrink: 0; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--sage); cursor: pointer; }
+.form__checkbox label { font-size: .82rem; color: var(--text-soft); line-height: 1.5; cursor: pointer; }
+.form__checkbox label a { color: var(--sage-deep); text-decoration: underline; text-underline-offset: 2px; }
+/* adatkezelési tájékoztató oldal */
+.adatkezelesi-doc { max-width: 780px; }
+.adatkezelesi-doc h2 { font-family: var(--font-heading); font-size: 1.25rem; color: var(--sage-deep); margin: 2.5rem 0 .75rem; }
+.adatkezelesi-doc h2:first-of-type { margin-top: 1rem; }
+.adatkezelesi-doc p { line-height: 1.8; color: var(--text); margin-bottom: 1rem; }
+.adatkezelesi-doc ul { padding-left: 1.4rem; margin-bottom: 1rem; }
+.adatkezelesi-doc ul li { line-height: 1.8; color: var(--text); margin-bottom: .35rem; }
+.adatkezelesi-doc a { color: var(--sage-deep); }
+.adatkezelesi-updated { font-size: .8rem; color: var(--text-soft); margin-bottom: 2rem; }
+.adatkezelesi-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: .9rem; }
+.adatkezelesi-table td { padding: .55rem .75rem; border: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+.adatkezelesi-table td:first-child { width: 160px; background: var(--cream); }
 .form__thanks { text-align: center; padding: 3rem 1.5rem; }
 .form__thanks-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--sage); color: #fff; font-size: 1.8rem; line-height: 64px; margin: 0 auto 1.25rem; }
 .form__thanks h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--sage-deep); margin-bottom: .75rem; }

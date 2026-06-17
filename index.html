@@ -67,6 +67,13 @@
     "url": "https://lelkekgyogyasza.hu",
     "telephone": "+36706182877",
     "email": "n.b.ildiko72@gmail.com",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+36706182877",
+      "contactType": "customer service",
+      "areaServed": "HU",
+      "availableLanguage": "Hungarian"
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Raktár utca 25-31.",
@@ -717,6 +724,10 @@
           <label for="message">Üzenet</label>
           <textarea id="message" name="message" rows="4" placeholder="Írd le röviden, miben szeretnél segítséget…"></textarea>
         </div>
+        <div class="form__checkbox">
+          <input type="checkbox" id="gdpr" name="gdpr" required>
+          <label for="gdpr">Elolvastam és elfogadom az <a href="/adatkezelesi" target="_blank">adatkezelési tájékoztatót</a>, és hozzájárulok adataim kezeléséhez az időpontfoglalás céljából.</label>
+        </div>
         <button type="submit" class="btn btn--primary btn--full">Elküldöm →</button>
         <p class="form__note">🔒 Adataidat bizalmasan kezelem, harmadik félnek nem adom át.</p>
         <div id="formThanks" style="display:none;margin-top:1.5rem;text-align:center;padding:1.5rem;background:var(--sage-pale);border-radius:var(--radius);">
@@ -754,6 +765,7 @@
         <a href="#velemenyek">Vélemények</a>
         <a href="#gyik">GYIK</a>
         <a href="#kapcsolat">Kapcsolat</a>
+        <a href="/adatkezelesi">Adatkezelési tájékoztató</a>
       </div>
       <div class="footer__links footer__modszerek">
         <span class="footer__col-title">Módszerek</span>
@@ -772,7 +784,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2026 Berényi Ildikó · Minden jog fenntartva</p>
+      <p>© 2026 Berényi Ildikó · Minden jog fenntartva · <a href="/adatkezelesi" style="color:inherit;opacity:.7">Adatkezelési tájékoztató</a></p>
     </div>
   </div>
 </footer>
