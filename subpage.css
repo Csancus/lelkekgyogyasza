@@ -84,6 +84,16 @@
 .num-card__num { font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; color: var(--sage-deep); line-height: 1; margin-bottom: .35rem; }
 .num-card p { font-size: .78rem; color: var(--text-soft); margin: 0; line-height: 1.4; }
 
+/* Kapcsolódó módszerek */
+.kapcsolodo { margin-top: 3rem; margin-bottom: 2rem; }
+.kapcsolodo__title { font-size: 1rem; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 1.25rem; }
+.kapcsolodo__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.kapcsolodo__card { display: flex; flex-direction: column; background: var(--cream); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; text-decoration: none; color: var(--text); transition: border-color .2s, box-shadow .2s; }
+.kapcsolodo__card:hover { border-color: var(--sage); box-shadow: 0 4px 16px rgba(78,114,73,.12); }
+.kapcsolodo__card strong { font-size: .95rem; color: var(--sage-deep); display: block; margin-bottom: .3rem; }
+.kapcsolodo__card span { font-size: .8rem; color: var(--text-soft); line-height: 1.4; }
+@media (max-width: 640px) { .kapcsolodo__grid { grid-template-columns: 1fr; } }
+
 /* CTA block */
 .subpage-cta {
   background: linear-gradient(135deg, var(--sage-pale) 0%, var(--rose-pale) 100%);

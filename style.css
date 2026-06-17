@@ -207,7 +207,7 @@ p + p { margin-top: .8rem; }
 @media (max-width:640px) { .photo-strip { height:300px; } }
 
 /* ===== MIBEN SEGÍTHET ===== */
-.segitseg { background: url("images/havasi-gyopar.jpg") center/cover no-repeat; position: relative; }
+.segitseg { background: image-set(url("images/havasi-gyopar.webp") type("image/webp"), url("images/havasi-gyopar.jpg") type("image/jpeg")) center/cover no-repeat; position: relative; }
 .segitseg::before { content:''; position:absolute; inset:0; background:rgba(245,234,229,.91); z-index:0; }
 .segitseg .container { position:relative; z-index:1; }
 .problems { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
