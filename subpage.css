@@ -138,14 +138,6 @@
 .article-detail-item strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-soft); margin-bottom: .3rem; }
 .article-detail-item span, .article-detail-item a { font-size: .92rem; color: var(--text); text-decoration: none; font-weight: 500; }
 
-/* FAQ items on article pages (h3, not button — always expanded) */
-.subpage-content .faq-item__q {
-  padding: 1.1rem 1.5rem; font-size: .95rem; font-weight: 600; color: var(--text);
-  display: block; width: 100%; font-family: inherit; margin: 0;
-}
-.subpage-content .faq-item__a { max-height: none; overflow: visible; }
-.subpage-content .faq-item__a p { padding: .25rem 1.5rem 1.1rem; }
-.subpage-content .faq-item { margin-bottom: .1rem; }
 
 @media (max-width: 640px) {
   .article-about { grid-template-columns: 1fr; padding: 1.5rem; }
