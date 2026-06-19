@@ -152,12 +152,79 @@
       </div>
     </div>
 
-    <div class="subpage-cta">
-      <h2>Próbáld ki a metamorf masszázst!</h2>
-      <p>Gyengéd érintéssel, mély hatással – foglalj időpontot ma.</p>
-      <a href="index.html#kapcsolat" class="btn btn--primary">Időpontot foglalok →</a>
-    </div>
+  </div>
+</section>
 
+<section class="section kapcsolat" id="kapcsolat">
+  <div class="container">
+    <div class="kapcsolat__inner">
+      <div class="kapcsolat__info">
+        <p class="section__tag">Kapcsolat</p>
+        <h2 class="section__title">Kérdésed van a Metamorf Masszázsról?</h2>
+        <p class="section__lead">Írj nekem és megbeszéljük, miben tudok segíteni!</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-item__icon">📍</div>
+            <div><strong>Helyszín</strong><p>1035 Budapest, Raktár utca 25-31.</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">📞</div>
+            <div><strong>Telefon</strong><p><a href="tel:+36706182877">+36 70 618 2877</a></p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">✉️</div>
+            <div><strong>Email</strong><p><a href="mailto:n.b.ildiko72@gmail.com">n.b.ildiko72@gmail.com</a></p></div>
+          </div>
+        </div>
+      </div>
+      <div class="kapcsolat__form">
+        <form class="form" id="contactForm">
+          <h3 class="form__title">Írj nekem</h3>
+          <div class="form__row">
+            <div class="form__group">
+              <label for="name">Neved *</label>
+              <input type="text" id="name" name="name" required placeholder="Kovács Anna">
+            </div>
+            <div class="form__group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="email@example.com">
+            </div>
+          </div>
+          <div class="form__group">
+            <label for="phone">Telefonszám</label>
+            <input type="tel" id="phone" name="phone" placeholder="+36 30 123 4567">
+          </div>
+          <div class="form__group">
+            <label for="service">Melyik módszer érdekel?</label>
+            <select id="service" name="service">
+              <option value="">Válassz módszert…</option>
+              <option>Kineziológia (TEK / One Brain / Brain Gym)</option>
+              <option>Gyermek kineziológia (Brain Gym / One Brain)</option>
+              <option>Egyéni Családállítás</option>
+              <option>Bach Virágterápia</option>
+              <option selected>Metamorf Masszázs</option>
+              <option>Numerológia</option>
+              <option>Érzelmi Kód – Stresszoldás</option>
+              <option>Még nem tudom, segíts dönteni!</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="message">Üzenet</label>
+            <textarea id="message" name="message" rows="4" placeholder="Írd le röviden, miben szeretnél segítséget…"></textarea>
+          </div>
+          <div class="form__checkbox">
+            <input type="checkbox" id="gdpr" name="gdpr" required>
+            <label for="gdpr">Elolvastam és elfogadom az <a href="/adatkezelesi" target="_blank">adatkezelési tájékoztatót</a>, és hozzájárulok adataim kezeléséhez.</label>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">Elküldöm →</button>
+          <p class="form__note">🔒 Adataidat bizalmasan kezelem, harmadik félnek nem adom át.</p>
+          <div id="formThanks" style="display:none;margin-top:1.5rem;text-align:center;padding:1.5rem;background:var(--sage-pale);border-radius:var(--radius);">
+            <div class="form__thanks-icon">✓</div>
+            <p style="color:var(--sage-deep);font-weight:600;font-size:1.05rem;margin-top:.75rem">Köszönöm! 48 órán belül keresni fogom!</p>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
 

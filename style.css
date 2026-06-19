@@ -452,3 +452,21 @@ p + p { margin-top: .8rem; }
 .faq-item__a { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
 .faq-item.open .faq-item__a { max-height: 300px; }
 .faq-item__a p { padding: 0 1.5rem 1.25rem; font-size: .93rem; color: var(--text-soft); line-height: 1.75; margin: 0; }
+
+/* Next-section floating button */
+#nextSectionBtn {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--sage-deep); color: #fff; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(78,114,73,.35);
+  opacity: 1; transition: opacity .4s, transform .2s, box-shadow .2s;
+  z-index: 90;
+  animation: nsb-bounce 2s ease-in-out infinite;
+}
+#nextSectionBtn:hover { box-shadow: 0 6px 22px rgba(78,114,73,.5); transform: translateX(-50%) scale(1.08); animation: none; }
+#nextSectionBtn.hidden { opacity: 0; pointer-events: none; }
+@keyframes nsb-bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(5px); }
+}

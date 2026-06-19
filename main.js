@@ -120,6 +120,23 @@ if (carouselItems.length) {
   });
 })();
 
+// Next-section floating button (homepage only)
+const nextBtn = document.getElementById('nextSectionBtn');
+if (nextBtn) {
+  const sections = [...document.querySelectorAll('section[id]')];
+  function updateBtn() {
+    const nearBottom = window.scrollY + window.innerHeight > document.body.scrollHeight - 120;
+    nextBtn.classList.toggle('hidden', nearBottom);
+  }
+  nextBtn.addEventListener('click', () => {
+    const threshold = window.scrollY + window.innerHeight * 0.5;
+    const next = sections.find(s => s.getBoundingClientRect().top + window.scrollY > threshold + 60);
+    if (next) next.scrollIntoView({ behavior: 'smooth' });
+  });
+  window.addEventListener('scroll', updateBtn, { passive: true });
+  updateBtn();
+}
+
 // Contact form — AJAX submit, inline thank-you
 const form = document.getElementById('contactForm');
 if (form) {
