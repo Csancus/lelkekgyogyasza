@@ -1,5 +1,25 @@
 /* ===== SUBPAGE STYLES ===== */
-.subpage-content .faq-list { margin-top: 1.5rem; }
+.subpage-content .faq-list { margin-top: 1.5rem; gap: 1rem; }
+.subpage-content .faq-item__q { padding: 1.35rem 1.5rem; }
+
+/* Subpage article headings */
+.subpage-content h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  color: var(--text);
+  margin: 3rem 0 1.25rem;
+  padding-bottom: .65rem;
+  border-bottom: 2px solid var(--sage-pale);
+  scroll-margin-top: 90px;
+}
+.subpage-content h2:first-of-type { margin-top: 0; }
+.subpage-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sage-deep);
+  margin: 2rem 0 .65rem;
+  font-family: var(--font-body);
+  scroll-margin-top: 90px;
+}
 .subpage-content .article-about { margin-top: 1.5rem; }
 
 /* Sub-hero (smaller hero for inner pages) */
