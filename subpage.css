@@ -130,6 +130,18 @@
   .article-steps li::before { width: 2rem; height: 2rem; font-size: .85rem; }
 }
 
+/* Info boxes (Brain Gym cards) */
+.info-boxes { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 1.5rem 0; }
+.info-box { background: var(--cream); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
+.info-box strong { display: block; font-size: .92rem; color: var(--sage-deep); margin-bottom: .4rem; }
+.info-box p { font-size: .82rem; color: var(--text-soft); line-height: 1.55; margin: 0; }
+/* Age grid */
+.age-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin: 1.25rem 0 1.75rem; }
+.age-card { background: var(--sage-pale); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; }
+.age-card strong { display: block; font-size: .9rem; color: var(--sage-deep); margin-bottom: .3rem; }
+.age-card span { font-size: .82rem; color: var(--text-soft); line-height: 1.5; }
+@media (max-width: 640px) { .info-boxes { grid-template-columns: 1fr; } .age-grid { grid-template-columns: 1fr; } }
+
 /* CTA block */
 .subpage-cta {
   background: linear-gradient(135deg, var(--sage-pale) 0%, var(--rose-pale) 100%);
