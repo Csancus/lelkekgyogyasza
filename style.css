@@ -396,6 +396,11 @@ p + p { margin-top: .8rem; }
 .footer__links a, .footer__contact a { font-size: .84rem; color: rgba(255,255,255,.55); transition: color var(--transition); }
 .footer__links a:hover, .footer__contact a:hover { color: var(--white); }
 .footer__bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 1.25rem; text-align: center; font-size: .78rem; color: rgba(255,255,255,.3); }
+.footer__locations { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.08); margin-bottom: 1.5rem; }
+.footer__locations-col { display: flex; flex-direction: column; gap: .35rem; }
+.footer__locations-col .footer__col-title { margin-bottom: .25rem; }
+.footer__locations-col a { font-size: .78rem; color: rgba(255,255,255,.4); transition: color var(--transition); }
+.footer__locations-col a:hover { color: rgba(255,255,255,.75); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 960px) {

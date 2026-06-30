@@ -125,8 +125,9 @@ const nextBtn = document.getElementById('nextSectionBtn');
 if (nextBtn) {
   const sections = [...document.querySelectorAll('section[id]')];
   function updateBtn() {
-    const nearBottom = window.scrollY + window.innerHeight > document.body.scrollHeight - 120;
-    nextBtn.classList.toggle('hidden', nearBottom);
+    const threshold = window.scrollY + window.innerHeight * 0.5;
+    const hasNext = sections.some(s => s.getBoundingClientRect().top + window.scrollY > threshold + 60);
+    nextBtn.classList.toggle('hidden', !hasNext);
   }
   nextBtn.addEventListener('click', () => {
     const threshold = window.scrollY + window.innerHeight * 0.5;
