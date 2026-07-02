@@ -236,3 +236,210 @@
   .num-grid { grid-template-columns: repeat(3, 1fr); }
   .step { gap: .85rem; }
 }
+
+/* ===== VIRÁGOS PAGE COMPONENTS (rolam + service pages) ===== */
+.container-sm { max-width: 720px; margin: 0 auto; padding: 0 1.75rem; }
+
+/* -- Rólam: split hero with portrait -- */
+.rolam-hero {
+  margin-top: 70px;
+  padding: 4rem 1.75rem 4rem;
+  background: linear-gradient(180deg, rgba(60,70,55,.35), rgba(60,70,55,.5)),
+              url("images/hero-viragos.jpg") center/cover no-repeat;
+  color: #fff;
+}
+.rolam-hero__inner {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.rolam-hero__text h1 {
+  color: #fff;
+  font-size: clamp(1.8rem, 3.8vw, 2.5rem);
+  line-height: 1.25;
+  margin-bottom: 1.1rem;
+  text-shadow: 0 2px 20px rgba(0,0,0,.35);
+}
+.rolam-hero__text p {
+  color: rgba(255,255,255,.95);
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 42ch;
+  text-shadow: 0 1px 10px rgba(0,0,0,.25);
+}
+.rolam-hero__img img {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 5px solid rgba(255,255,255,.9);
+  box-shadow: var(--shadow-lg);
+  margin-left: auto;
+}
+@media (max-width: 720px) {
+  .rolam-hero { padding: 3rem 1.25rem; }
+  .rolam-hero__inner { grid-template-columns: 1fr; text-align: center; }
+  .rolam-hero__text p { margin-left: auto; margin-right: auto; }
+  .rolam-hero__img img { max-width: 240px; margin: 0 auto; }
+}
+
+/* -- Rólam: intro block -- */
+.rolam-intro { background: var(--cream); padding: 4rem 0 2.5rem; text-align: center; }
+.rolam-intro__title { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1.5rem; }
+.rolam-intro p { color: var(--text-soft); max-width: 640px; margin: 0 auto .9rem; line-height: 1.75; }
+
+/* -- Sage quote band (reusable) -- */
+.rolam-quote, .viragos-quote-band {
+  background: #8b9068;
+  color: #fff;
+  text-align: center;
+  padding: 3rem 1.75rem;
+}
+.rolam-quote p, .viragos-quote-band p {
+  font-family: var(--font-head);
+  font-style: italic;
+  color: #fff;
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  line-height: 1.55;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* -- Rólam: hitvallás cards (3x2) -- */
+.rolam-hitvallas { background: var(--cream); }
+.rolam-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.rolam-card {
+  background: #fff;
+  padding: 1.6rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s, box-shadow .2s;
+}
+.rolam-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.rolam-card__dot {
+  display: inline-block; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--viragos-rose-dark); margin-bottom: .8rem;
+}
+.rolam-card h3 { font-family: var(--font-head); font-size: 1.08rem; color: var(--text); margin: 0 0 .5rem; line-height: 1.3; }
+.rolam-card p { font-size: .9rem; color: var(--text-soft); margin: 0; line-height: 1.6; }
+@media (max-width: 900px) { .rolam-cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .rolam-cards { grid-template-columns: 1fr; } }
+
+/* -- Rólam: végrendeletem centered CTA block -- */
+.rolam-vegr { background: var(--cream); padding-top: 4rem; padding-bottom: 4rem; }
+.rolam-vegr .section__head { margin-bottom: 2rem; }
+.rolam-vegr__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* -- Rólam: closing note with lotus -- */
+.rolam-closing { background: var(--cream); padding: 2rem 0 5rem; }
+.rolam-closing__inner {
+  display: grid; grid-template-columns: 140px 1fr; gap: 2rem;
+  align-items: center; max-width: 780px;
+}
+.rolam-lotus { width: 140px; height: 140px; opacity: .5; }
+.rolam-closing h2 { font-size: clamp(1.3rem, 2.6vw, 1.7rem); margin-bottom: .8rem; }
+.rolam-closing p { color: var(--text-soft); margin-bottom: 1.25rem; }
+.rolam-closing__actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .rolam-closing__inner { grid-template-columns: 1fr; text-align: center; }
+  .rolam-lotus { margin: 0 auto; }
+  .rolam-closing__actions { justify-content: center; }
+}
+
+/* -- Reusable viragos-styled sections for service pages -- */
+.viragos-intro { padding: 4rem 0 2rem; background: var(--cream); text-align: center; }
+.viragos-intro h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem; }
+.viragos-intro p { color: var(--text-soft); max-width: 640px; margin: 0 auto; line-height: 1.75; }
+
+.viragos-features-section { padding: 3.5rem 0; background: var(--cream); }
+.viragos-features-section .section__head { margin-bottom: 2.5rem; }
+.viragos-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+.viragos-feature__dot {
+  display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--viragos-rose-dark); margin-bottom: .7rem;
+}
+.viragos-feature h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: .98rem;
+  color: var(--text);
+  margin: 0 0 .35rem;
+}
+.viragos-feature p { font-size: .88rem; color: var(--text-soft); margin: 0; line-height: 1.55; }
+@media (max-width: 720px) {
+  .viragos-features { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+}
+
+.viragos-card-section { padding: 4rem 0; background: var(--white); }
+.viragos-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+.viragos-cards article {
+  background: #fff;
+  padding: 1.6rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s, box-shadow .2s;
+}
+.viragos-cards article:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.viragos-cards h3 { font-family: var(--font-head); font-size: 1.05rem; color: var(--text); margin: 0 0 .5rem; }
+.viragos-cards p { font-size: .88rem; color: var(--text-soft); margin: 0; line-height: 1.55; }
+@media (max-width: 900px) { .viragos-cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .viragos-cards { grid-template-columns: 1fr; } }
+
+.viragos-prices { padding: 4rem 0; background: var(--cream); }
+.viragos-prices .section__head { margin-bottom: 2rem; }
+.viragos-prices__grid {
+  display: grid; grid-template-columns: repeat(2, minmax(240px, 320px));
+  gap: 1.5rem; justify-content: center; max-width: var(--max-w);
+  margin: 0 auto; padding: 0 1.75rem;
+}
+.viragos-price-card {
+  background: var(--cream-mid);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.viragos-price-card .name { font-family: var(--font-head); font-size: 1.15rem; color: var(--text); }
+.viragos-price-card .price { font-family: var(--font-head); font-size: 2rem; color: var(--viragos-plum); margin: .5rem 0; }
+.viragos-price-card .note { font-size: .85rem; color: var(--text-soft); margin-bottom: 1rem; }
+.btn--sm { padding: .55rem 1.4rem; font-size: .85rem; }
+.viragos-prices__note { text-align: center; color: var(--text-soft); font-size: .9rem; margin-top: 1.5rem; }
+@media (max-width: 640px) {
+  .viragos-prices__grid { grid-template-columns: 1fr; }
+}
+
+/* Closing CTA on sage band */
+.viragos-cta-band {
+  background: #8b9068; color: #fff; text-align: center;
+  padding: 3.5rem 1.75rem;
+}
+.viragos-cta-band h2 { color: #fff; font-family: var(--font-head); font-size: clamp(1.3rem, 3vw, 1.8rem); margin-bottom: 1rem; }
+.viragos-cta-band p { color: rgba(255,255,255,.92); margin-bottom: 1.5rem; }
+.viragos-cta-band .btn--primary { background: var(--viragos-cream); color: var(--viragos-plum); }
+.viragos-cta-band .btn--primary:hover { background: #fff; color: var(--viragos-plum-dark); }
