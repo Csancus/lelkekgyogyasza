@@ -213,8 +213,12 @@
   fetch(API).then(function (r) { return r.json(); }).then(function (d) { render(Array.isArray(d) ? d : []); })
     .catch(function () { render([]); });
 
-  var adminBtn = document.getElementById('adminOpenBtn');
-  if (adminBtn) adminBtn.addEventListener('click', openAdmin);
+  function bindAdminBtn() {
+    var adminBtn = document.getElementById('adminOpenBtn');
+    if (adminBtn) adminBtn.addEventListener('click', openAdmin);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindAdminBtn);
+  else bindAdminBtn();
 
   var a = 0, b = 0;
   function openAdmin() {
