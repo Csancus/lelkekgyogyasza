@@ -280,6 +280,7 @@ p + p { margin-top: .8rem; }
 .form__group label { display: block; font-size: .82rem; font-weight: 600; color: var(--text); margin-bottom: .45rem; letter-spacing: .02em; }
 .form__group input, .form__group select, .form__group textarea { width: 100%; padding: .8rem 1.1rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: .9rem; color: var(--text); background: var(--cream); transition: border-color var(--transition), background var(--transition); outline: none; appearance: none; }
 .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--sage); background: var(--white); }
+.form__group select { cursor: pointer; padding-right: 2.6rem; background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="%236B6056" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M4 6l4 4 4-4"/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 16px; }
 .form__group textarea { resize: vertical; min-height: 120px; }
 .form__note { font-size: .73rem; color: var(--text-soft); margin-top: .85rem; text-align: center; line-height: 1.5; }
 .form__checkbox { display: flex; align-items: flex-start; gap: .6rem; margin-bottom: 1.25rem; }
