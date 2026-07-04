@@ -1,7 +1,7 @@
 // Események API – Upstash Redis (Vercel KV) REST
 const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;
-const ADMIN_PASS = process.env.EVENTS_ADMIN_PASSWORD || 'lelkek';
+const ADMIN_PASS = process.env.ADMIN_PASSWORD || process.env.EVENTS_ADMIN_PASSWORD || 'lelkek';
 const KEY = 'esemenyek';
 
 async function kvGet() {
