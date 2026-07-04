@@ -207,15 +207,29 @@ if (mapFrame) {
 (function esemenyekNavLink() {
   var menu = document.getElementById('navMenu');
   if (!menu || menu.querySelector('a[href="/esemenyek"]')) return;
-  fetch('/api/events').then(function (r) { return r.json(); }).then(function (evs) {
-    if (!Array.isArray(evs)) return;
-    var today = new Date().toISOString().slice(0, 10);
-    if (!evs.some(function (e) { return e && e.date >= today; })) return;
+  var today = new Date().toISOString().slice(0, 10);
+  function inject() {
     var a = document.createElement('a');
     a.href = '/esemenyek';
     a.textContent = 'Események';
     var blog = menu.querySelector('a[href="/blog"]');
     if (blog && blog.nextSibling) menu.insertBefore(a, blog.nextSibling);
     else menu.appendChild(a);
+  }
+  // 12 orás localStorage cache: nem kérdezzük le minden oldalletöltésnél
+  try {
+    var c = JSON.parse(localStorage.getItem('evNav') || 'null');
+    if (c && c.exp > Date.now()) {
+      if (c.next && c.next >= today) inject();
+      return;
+    }
+  } catch (e) {}
+  fetch('/api/events').then(function (r) { return r.json(); }).then(function (evs) {
+    var next = '';
+    if (Array.isArray(evs)) evs.forEach(function (e) {
+      if (e && e.date >= today && (!next || e.date < next)) next = e.date;
+    });
+    try { localStorage.setItem('evNav', JSON.stringify({ exp: Date.now() + 12 * 3600 * 1000, next: next })); } catch (e) {}
+    if (next) inject();
   }).catch(function () {});
 })();
