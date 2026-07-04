@@ -30,7 +30,7 @@
 }
 .subhero__overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(170deg, rgba(60,45,50,.6) 0%, rgba(90,50,60,.5) 100%);
+  background: linear-gradient(170deg, rgba(25,42,28,.72) 0%, rgba(45,70,40,.55) 100%);
 }
 .subhero__content { position: relative; z-index: 2; padding: 3rem 1.75rem; }
 .subhero__tag {
