@@ -189,3 +189,15 @@ document.querySelectorAll('.mprice-card').forEach(card => {
   rows.forEach(row => row.addEventListener('click', () => select(row)));
   select(rows[0]);
 });
+
+// Térkép: csak akkor tölt be, amikor a látótér közelébe ér
+const mapFrame = document.querySelector('iframe[data-src]');
+if (mapFrame) {
+  const loadMap = () => { if (!mapFrame.getAttribute('src')) mapFrame.src = mapFrame.dataset.src; };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { loadMap(); io.disconnect(); } });
+    }, { rootMargin: '600px' });
+    io.observe(mapFrame);
+  } else { loadMap(); }
+}
