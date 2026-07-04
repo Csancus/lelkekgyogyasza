@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $name    = strip_tags(trim($_POST['name']    ?? ''));
 $email   = filter_var(trim($_POST['email']   ?? ''), FILTER_VALIDATE_EMAIL);
 $phone   = strip_tags(trim($_POST['phone']   ?? ''));
+$address = strip_tags(trim($_POST["address"] ?? ""));
 $service = strip_tags(trim($_POST['service'] ?? ''));
 $message = strip_tags(trim($_POST['message'] ?? ''));
 
@@ -25,6 +26,10 @@ $subject = '=?UTF-8?B?' . base64_encode('Új érdeklődő – lelkekgyogyasza.hu
 $phone_row = $phone
     ? "<tr><td style='padding:10px 16px;border-bottom:1px solid #e8dfd0;color:#6b6056;font-size:13px;white-space:nowrap;width:130px'>📞 Telefon</td><td style='padding:10px 16px;border-bottom:1px solid #e8dfd0;font-size:14px;color:#2e2a25'>" . htmlspecialchars($phone) . "</td></tr>"
     : '';
+
+$address_row = $address
+    ? "<tr><td style='padding:10px 16px;border-bottom:1px solid #e8dfd0;color:#6b6056;font-size:13px;white-space:nowrap;width:130px'>🏠 Lakcím</td><td style='padding:10px 16px;border-bottom:1px solid #e8dfd0;font-size:14px;color:#2e2a25'>" . htmlspecialchars($address) . "</td></tr>"
+    : "";
 
 $service_row = $service
     ? "<tr><td style='padding:10px 16px;border-bottom:1px solid #e8dfd0;color:#6b6056;font-size:13px;white-space:nowrap;width:130px'>🌿 Érdekli</td><td style='padding:10px 16px;border-bottom:1px solid #e8dfd0;font-size:14px;color:#2e2a25'>" . htmlspecialchars($service) . "</td></tr>"
@@ -55,7 +60,7 @@ $html = <<<HTML
         <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e8dfd0;border-radius:10px;overflow:hidden">
           <tr><td style="padding:10px 16px;border-bottom:1px solid #e8dfd0;color:#6b6056;font-size:13px;white-space:nowrap;width:130px">👤 Név</td><td style="padding:10px 16px;border-bottom:1px solid #e8dfd0;font-size:14px;color:#2e2a25;font-weight:600">{$name}</td></tr>
           <tr><td style="padding:10px 16px;border-bottom:1px solid #e8dfd0;color:#6b6056;font-size:13px;white-space:nowrap">✉️ Email</td><td style="padding:10px 16px;border-bottom:1px solid #e8dfd0;font-size:14px"><a href="mailto:{$email}" style="color:#4e7249">{$email}</a></td></tr>
-          {$phone_row}{$service_row}{$message_row}
+          {$phone_row}{$address_row}{$service_row}{$message_row}
         </table>
       </td></tr>
       <!-- Footer -->
