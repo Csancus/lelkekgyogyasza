@@ -7,15 +7,25 @@ window.addEventListener('scroll', () => {
 // Mobile menu
 const toggle = document.getElementById('navToggle');
 const menu = document.getElementById('navMenu');
+function closeMobileMenu() {
+  menu.classList.remove('open');
+  toggle.classList.remove('open');
+  const dd = document.getElementById('navDropdown');
+  if (dd) dd.classList.remove('open');
+}
 toggle.addEventListener('click', () => {
   const open = menu.classList.toggle('open');
   toggle.classList.toggle('open', open);
   toggle.setAttribute('aria-label', open ? 'Menü bezárása' : 'Menü megnyitása');
+  if (!open) closeMobileMenu();
 });
-menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  menu.classList.remove('open');
-  toggle.classList.remove('open');
-}));
+menu.addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  // a Módszerek gomb mobilon almenüt nyit, nem zárhatja a menüt
+  if (a.id === 'navDropdownBtn' && window.innerWidth <= 640) return;
+  closeMobileMenu();
+});
 
 // Nav dropdown – mobile: tap to toggle
 const dropdownBtn = document.getElementById('navDropdownBtn');
