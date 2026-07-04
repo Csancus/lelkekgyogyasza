@@ -584,10 +584,8 @@
 .esemeny-card .btn { margin-top: .35rem; }
 @media (max-width: 560px) { .esemeny-card { grid-template-columns: 1fr; } }
 
-.footer-admin-wrap { text-align: center; padding: .75rem 0 .25rem; }
-.footer-admin-btn { background: none; border: none; color: rgba(255,255,255,.7); opacity: 0; font-size: .72rem; cursor: pointer; transition: opacity .2s; letter-spacing: .08em; }
-.footer-admin-wrap:hover .footer-admin-btn, .footer-admin-btn:focus { opacity: .7; }
-.footer-admin-btn:hover { opacity: 1; }
+.footer-admin-btn { display: block; margin: .5rem auto 0; background: none; border: none; color: rgba(255,255,255,.75); opacity: 0; font-size: .72rem; cursor: pointer; transition: opacity .2s; letter-spacing: .1em; padding: .5rem 2.5rem; }
+.footer-admin-btn:hover, .footer-admin-btn:focus { opacity: 1; }
 
 .admin-panel[hidden] { display: none; }
 .admin-panel { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 500; display: flex; align-items: center; justify-content: center; padding: 1rem; }

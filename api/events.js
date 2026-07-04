@@ -41,8 +41,9 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const e = body.event || {};
     if (!e.title || !e.date) return res.status(400).json({ error: 'A cím és a dátum kötelező.' });
+    if (e.id) events = events.filter((ev) => ev.id !== e.id);
     events.push({
-      id: Math.random().toString(36).slice(2) + Date.now().toString(36),
+      id: e.id || Math.random().toString(36).slice(2) + Date.now().toString(36),
       title: String(e.title).slice(0, 200),
       date: String(e.date).slice(0, 10),
       time: String(e.time || '').slice(0, 20),

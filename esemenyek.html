@@ -112,7 +112,7 @@
 <script>
 (function () {
   var API = '/api/events';
-  var admin = false, pass = '';
+  var admin = false, pass = '', editingId = null;
   var months = ['jan.','febr.','márc.','ápr.','máj.','jún.','júl.','aug.','szept.','okt.','nov.','dec.'];
 
   function fmtDate(d) {
@@ -137,7 +137,7 @@
         (e.location ? '<p class="esemeny-card__loc">📍 ' + esc(e.location) + '</p>' : '') +
         (e.desc ? '<p>' + esc(e.desc) + '</p>' : '') +
         '<a href="#kapcsolat" class="btn btn--primary btn--sm" data-service="Egyéni Családállítás" data-booking="Jelentkezni szeretnék erre az eseményre: ' + esc(e.title) + ' (' + fmtDate(e.date) + ').">Jelentkezem</a>' +
-        (admin ? ' <button class="btn btn--outline btn--sm" data-del="' + e.id + '">Törlés</button>' : '') +
+        (admin ? ' <button class="btn btn--outline btn--sm" data-edit="' + e.id + '">Szerkesztés</button> <button class="btn btn--outline btn--sm" data-del="' + e.id + '">Törlés</button>' : '') +
         '</div></div>';
     }).join('');
     list.querySelectorAll('[data-del]').forEach(function (b) {
@@ -145,6 +145,21 @@
         if (!confirm('Biztosan törlöd?')) return;
         fetch(API, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pass, id: b.dataset.del }) })
           .then(function (r) { return r.json(); }).then(render);
+      });
+    });
+    list.querySelectorAll('[data-edit]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var ev = null;
+        upcoming.forEach(function (x) { if (x.id === b.dataset.edit) ev = x; });
+        if (!ev) return;
+        editingId = ev.id;
+        document.getElementById('evTitle').value = ev.title || '';
+        document.getElementById('evDate').value = ev.date || '';
+        document.getElementById('evTime').value = ev.time || '';
+        document.getElementById('evLoc').value = ev.location || '';
+        document.getElementById('evDesc').value = ev.desc || '';
+        document.getElementById('evSaveBtn').textContent = 'Módosítás mentése';
+        document.getElementById('adminPanel').hidden = false;
       });
     });
     list.querySelectorAll('a[data-booking]').forEach(function (btn) {
@@ -164,17 +179,8 @@
   fetch(API).then(function (r) { return r.json(); }).then(function (d) { render(Array.isArray(d) ? d : []); })
     .catch(function () { render([]); });
 
-  var foot = document.querySelector('.footer');
-  if (foot) {
-    var wrap = document.createElement('div');
-    wrap.className = 'footer-admin-wrap';
-    var ab = document.createElement('button');
-    ab.textContent = 'admin';
-    ab.className = 'footer-admin-btn';
-    ab.addEventListener('click', openAdmin);
-    wrap.appendChild(ab);
-    foot.appendChild(wrap);
-  }
+  var adminBtn = document.getElementById('adminOpenBtn');
+  if (adminBtn) adminBtn.addEventListener('click', openAdmin);
 
   var a = 0, b = 0;
   function openAdmin() {
@@ -203,6 +209,7 @@
   document.getElementById('evSaveBtn').addEventListener('click', function () {
     var msg = document.getElementById('admFormMsg');
     var ev = {
+      id: editingId || undefined,
       title: document.getElementById('evTitle').value.trim(),
       date: document.getElementById('evDate').value,
       time: document.getElementById('evTime').value.trim(),
@@ -215,6 +222,8 @@
       .then(function (d) {
         if (d.error) { msg.textContent = d.error; msg.style.color = '#c0392b'; return; }
         msg.textContent = 'Elmentve!'; msg.style.color = 'var(--sage-deep)';
+        editingId = null;
+        document.getElementById('evSaveBtn').textContent = 'Esemény mentése';
         document.getElementById('evTitle').value = ''; document.getElementById('evDesc').value = '';
         render(d);
       });
@@ -476,6 +485,7 @@
     </div>
     <div class="footer__bottom">
       <p>© 2011-2026 Berényi Ildikó · Minden jog fenntartva</p>
+      <button id="adminOpenBtn" class="footer-admin-btn" type="button">admin</button>
     </div>
   </div>
 </footer>
