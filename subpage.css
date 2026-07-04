@@ -577,7 +577,7 @@
 .esemeny-card { display: grid; grid-template-columns: 130px 1fr; gap: 1.25rem; background: #fff; border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 1.4rem 1.6rem; margin-bottom: 1rem; align-items: start; }
 .esemeny-card__date { text-align: center; background: var(--sage-pale); border-radius: var(--radius-sm); padding: .8rem .5rem; }
 .esemeny-card__date span { display: block; font-weight: 700; color: var(--sage-deep); font-size: .95rem; }
-.esemeny-card__date small { color: var(--text-soft); font-size: .78rem; }
+.esemeny-card__date small { display: block; color: var(--text-soft); font-size: .78rem; line-height: 1.5; }
 .esemeny-card__body h3 { margin: 0 0 .35rem; font-size: 1.15rem; }
 .esemeny-card__body p { font-size: .9rem; margin: 0 0 .6rem; }
 .esemeny-card__loc { color: var(--text-soft); font-size: .82rem !important; }
@@ -618,3 +618,10 @@
 .adm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
 .adm-grid .adm-full { grid-column: 1 / -1; }
 @media (max-width: 560px) { .adm-grid { grid-template-columns: 1fr; } }
+
+
+/* Esemény leírás: összecsukható */
+.esemeny-card__desc.collapsed { max-height: calc(1.6em * 5); overflow: hidden; position: relative; }
+.esemeny-card__desc.collapsed::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2em; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff); }
+.desc-toggle { display: block; background: none; border: none; color: var(--sage-deep); font-weight: 600; font-size: .85rem; cursor: pointer; padding: 0 0 .6rem; }
+.desc-toggle:hover { text-decoration: underline; }

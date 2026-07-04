@@ -186,7 +186,7 @@
         '<div class="esemeny-card__body"><h3>' + esc(e.title) + '</h3>' +
         (e.location ? '<p class="esemeny-card__loc">📍 <a href="https://maps.google.com/?q=' + encodeURIComponent(e.location) + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">' + esc(e.location) + '</a></p>' : '') +
         (e.fee ? '<p class="esemeny-card__loc">💰 Részvételi díj: ' + esc(e.fee) + '</p>' : '') +
-        (e.desc ? '<div class="esemeny-card__desc">' + rich(e.desc) + '</div>' : '') +
+        (e.desc ? '<div class="esemeny-card__desc collapsed">' + rich(e.desc) + '</div>' : '') +
         signup + fb +
         (admin ? ' <button class="btn btn--outline btn--sm" data-edit="' + e.id + '">Szerkesztés</button> <button class="btn btn--outline btn--sm" data-del="' + e.id + '">Törlés</button>' : '') +
         '</div></div></div>';
@@ -200,6 +200,18 @@
             .then(function (r) { return r.json(); }).then(render);
         });
       });
+    });
+    list.querySelectorAll('.esemeny-card__desc.collapsed').forEach(function (d) {
+      if (d.scrollHeight <= d.clientHeight + 8) { d.classList.remove('collapsed'); return; }
+      var t = document.createElement('button');
+      t.type = 'button';
+      t.className = 'desc-toggle';
+      t.textContent = 'Tovább olvasom ↓';
+      t.addEventListener('click', function () {
+        var open = d.classList.toggle('collapsed');
+        t.textContent = open ? 'Tovább olvasom ↓' : 'Kevesebb ↑';
+      });
+      d.after(t);
     });
     list.querySelectorAll('[data-edit]').forEach(function (b) {
       b.addEventListener('click', function () {
