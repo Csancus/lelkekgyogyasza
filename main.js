@@ -65,6 +65,7 @@ if (carouselItems.length) {
 // Lightbox
 (function(){
   const lb = document.getElementById('lightbox');
+  if (!lb) return; // nincs galéria ezen az oldalon
   const lbImg = document.getElementById('lbImg');
   const lbCap = document.getElementById('lbCaption');
   const lbCounter = document.createElement('div');
