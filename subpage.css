@@ -339,6 +339,12 @@
 
 /* -- Rólam: végrendeletem centered CTA block -- */
 .rolam-vegr { background: var(--cream); padding-top: 4rem; padding-bottom: 4rem; }
+.vegzettseg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .85rem; max-width: 960px; margin: 0 auto; }
+.vegzettseg-item { background: #fff; border: 1px solid var(--cream-dark); border-radius: var(--radius-sm); padding: .95rem 1.1rem; display: flex; flex-direction: column; gap: .3rem; }
+.vegzettseg-item strong { font-size: .88rem; color: var(--text); line-height: 1.35; }
+.vegzettseg-item span { font-size: .76rem; color: var(--text-soft); }
+@media (max-width: 900px) { .vegzettseg-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .vegzettseg-grid { grid-template-columns: 1fr; } }
 .rolam-vegr .section__head { margin-bottom: 2rem; }
 .rolam-vegr__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
