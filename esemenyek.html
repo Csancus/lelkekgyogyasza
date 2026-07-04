@@ -21,6 +21,9 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"CollectionPage","name":"Események – Berényi Ildikó","description":"Közelgő workshopok és csoportos családállítás időpontok.","url":"https://lelkekgyogyasza.hu/esemenyek"}
+  </script>
+  <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://lelkekgyogyasza.hu/"},{"@type":"ListItem","position":2,"name":"Események","item":"https://lelkekgyogyasza.hu/esemenyek"}]}
   </script>
 </head>
@@ -104,6 +107,7 @@
         <label class="adm-full">Cím*<br><input type="text" id="evTitle"></label>
         <label>Borítókép feltöltése<br><input type="file" id="evImageFile" accept="image/*"></label>
         <label>…vagy borítókép URL<br><input type="url" id="evImage" placeholder="https://... (kép link)"></label>
+        <label>Típus<br><select id="evMode"><option value="szemelyes">Személyes</option><option value="online">Online</option></select></label>
         <label>Dátum*<br><input type="date" id="evDate"></label>
         <label>Időpont<br><input type="text" id="evTime" placeholder="pl. 9:00–17:00"></label>
         <label>Várható hossz<br><input type="text" id="evDuration" placeholder="pl. kb. 3 óra"></label>
@@ -152,6 +156,45 @@
 
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
 
+  function plain(html) { var d = document.createElement('div'); d.innerHTML = html || ''; return (d.textContent || '').trim().slice(0, 500); }
+
+  function buildSchema(events) {
+    var old = document.getElementById('eventsSchema');
+    if (old) old.remove();
+    if (!events.length) return;
+    var graph = events.map(function (e) {
+      var startTime = (e.time || '').match(/(\d{1,2}):(\d{2})/);
+      var endTime = (e.time || '').match(/[-–]\s*(\d{1,2}):(\d{2})/);
+      var isOnline = e.mode === 'online' || /online/i.test(e.location || '');
+      var ev = {
+        '@type': 'Event',
+        name: e.title,
+        startDate: e.date + (startTime ? 'T' + ('0' + startTime[1]).slice(-2) + ':' + startTime[2] + ':00+02:00' : ''),
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: isOnline ? 'https://schema.org/OnlineEventAttendanceMode' : 'https://schema.org/OfflineEventAttendanceMode',
+        description: plain(e.desc),
+        url: 'https://lelkekgyogyasza.hu/esemenyek',
+        organizer: { '@type': 'Person', name: 'Berényi Ildikó', url: 'https://lelkekgyogyasza.hu/' },
+        performer: { '@type': 'Person', name: 'Berényi Ildikó' }
+      };
+      if (endTime) ev.endDate = e.date + 'T' + ('0' + endTime[1]).slice(-2) + ':' + endTime[2] + ':00+02:00';
+      if (e.image && e.image.indexOf('http') === 0) ev.image = [e.image];
+      ev.location = isOnline
+        ? { '@type': 'VirtualLocation', url: e.signupUrl || 'https://lelkekgyogyasza.hu/esemenyek' }
+        : { '@type': 'Place', name: e.location || 'Budapest', address: e.location || 'Budapest' };
+      var price = (e.fee || '').replace(/[^0-9]/g, '');
+      if (price) {
+        ev.offers = { '@type': 'Offer', price: price, priceCurrency: 'HUF', availability: 'https://schema.org/InStock', url: e.signupUrl || 'https://lelkekgyogyasza.hu/esemenyek' };
+      }
+      return ev;
+    });
+    var sc = document.createElement('script');
+    sc.type = 'application/ld+json';
+    sc.id = 'eventsSchema';
+    sc.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+    document.head.appendChild(sc);
+  }
+
   function rich(html) {
     var d = document.createElement('div');
     d.innerHTML = html || '';
@@ -183,7 +226,7 @@
         (e.image ? '<img class="esemeny-card__cover" src="' + esc(e.image) + '" alt="" loading="lazy">' : '') +
         '<div class="esemeny-card__grid">' +
         '<div class="esemeny-card__date"><span>' + fmtDate(e.date) + '</span>' + (e.time ? '<small>' + esc(e.time) + '</small>' : '') + (e.duration ? '<small>' + esc(e.duration) + '</small>' : '') + '</div>' +
-        '<div class="esemeny-card__body"><h3>' + esc(e.title) + '</h3>' +
+        '<div class="esemeny-card__body"><h3>' + esc(e.title) + ' <span class="esemeny-badge esemeny-badge--' + (e.mode === 'online' ? 'online' : 'szemelyes') + '">' + (e.mode === 'online' ? 'Online' : 'Személyes') + '</span></h3>' +
         (e.location ? '<p class="esemeny-card__loc">📍 <a href="https://maps.google.com/?q=' + encodeURIComponent(e.location) + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">' + esc(e.location) + '</a></p>' : '') +
         (e.fee ? '<p class="esemeny-card__loc">💰 Részvételi díj: ' + esc(e.fee) + '</p>' : '') +
         (e.desc ? '<div class="esemeny-card__desc collapsed">' + rich(e.desc) + '</div>' : '') +
@@ -201,6 +244,7 @@
         });
       });
     });
+    buildSchema(upcoming);
     list.querySelectorAll('.esemeny-card__desc.collapsed').forEach(function (d) {
       if (d.scrollHeight <= d.clientHeight + 8) { d.classList.remove('collapsed'); return; }
       var t = document.createElement('button');
@@ -226,6 +270,7 @@
         document.getElementById('evDuration').value = ev.duration || '';
         document.getElementById('evLoc').value = ev.location || '';
         document.getElementById('evFee').value = ev.fee || '';
+        document.getElementById('evMode').value = ev.mode === 'online' ? 'online' : 'szemelyes';
         document.getElementById('evDesc').innerHTML = rich(ev.desc || '');
         document.getElementById('evSignup').value = ev.signupUrl || '';
         document.getElementById('evFb').value = ev.fbUrl || '';
@@ -275,6 +320,7 @@
       document.getElementById(id).value = '';
     });
     document.getElementById('evDate').value = '';
+    document.getElementById('evMode').value = 'szemelyes';
     document.getElementById('evDesc').innerHTML = '';
     document.getElementById('evImageFile').value = '';
     document.getElementById('evSaveBtn').textContent = 'Esemény mentése';
@@ -364,6 +410,7 @@
       duration: document.getElementById('evDuration').value.trim(),
       location: document.getElementById('evLoc').value.trim(),
       fee: document.getElementById('evFee').value.trim(),
+      mode: document.getElementById('evMode').value,
       desc: document.getElementById('evDesc').innerHTML.trim(),
       signupUrl: document.getElementById('evSignup').value.trim(),
       fbUrl: document.getElementById('evFb').value.trim()

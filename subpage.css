@@ -625,3 +625,10 @@
 .esemeny-card__desc.collapsed::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2em; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff); }
 .desc-toggle { display: block; background: none; border: none; color: var(--sage-deep); font-weight: 600; font-size: .85rem; cursor: pointer; padding: 0 0 .6rem; }
 .desc-toggle:hover { text-decoration: underline; }
+
+
+/* Esemény típus badge */
+.esemeny-badge { display: inline-block; vertical-align: middle; font-family: var(--font-body); font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .2rem .65rem; border-radius: 50px; margin-left: .4rem; }
+.esemeny-badge--online { background: var(--sage-deep); color: #fff; }
+.esemeny-badge--szemelyes { background: var(--sage-pale); color: var(--sage-deep); }
+.admin-panel__inner select { width: 100%; padding: .6rem .8rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: .9rem; background: #fff; }

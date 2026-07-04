@@ -201,3 +201,21 @@ if (mapFrame) {
     io.observe(mapFrame);
   } else { loadMap(); }
 }
+
+
+// Események menüpont a headerben, ha van jövőbeli esemény
+(function esemenyekNavLink() {
+  var menu = document.getElementById('navMenu');
+  if (!menu || menu.querySelector('a[href="/esemenyek"]')) return;
+  fetch('/api/events').then(function (r) { return r.json(); }).then(function (evs) {
+    if (!Array.isArray(evs)) return;
+    var today = new Date().toISOString().slice(0, 10);
+    if (!evs.some(function (e) { return e && e.date >= today; })) return;
+    var a = document.createElement('a');
+    a.href = '/esemenyek';
+    a.textContent = 'Események';
+    var blog = menu.querySelector('a[href="/blog"]');
+    if (blog && blog.nextSibling) menu.insertBefore(a, blog.nextSibling);
+    else menu.appendChild(a);
+  }).catch(function () {});
+})();

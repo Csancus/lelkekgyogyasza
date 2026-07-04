@@ -77,6 +77,7 @@ export default async function handler(req, res) {
       duration: String(e.duration || '').slice(0, 60),
       location: String(e.location || '').slice(0, 200),
       fee: String(e.fee || '').slice(0, 60),
+      mode: e.mode === 'online' ? 'online' : 'szemelyes',
       desc: sanitize(e.desc),
       signupUrl: url(e.signupUrl),
       fbUrl: url(e.fbUrl),
