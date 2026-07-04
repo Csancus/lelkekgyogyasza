@@ -137,11 +137,18 @@ if (nextBtn) {
   });
   window.addEventListener('scroll', updateBtn, { passive: true });
   updateBtn();
-  // kompakt hero-s oldalakon a nyíl a hero aljához rögzül (nem lebeg)
-  const compactHero = document.querySelector('.hero--compact');
-  if (compactHero) {
-    compactHero.appendChild(nextBtn);
+  // kompakt hero-s oldalakon a nyíl nem lebeg: mindig az aktuális szekció aljára kerül
+  if (document.querySelector('.hero--compact')) {
     nextBtn.classList.add('nsb--inhero');
+    const place = () => {
+      const threshold = window.scrollY + window.innerHeight * 0.5;
+      const idx = sections.findIndex(s => s.getBoundingClientRect().top + window.scrollY > threshold + 60);
+      if (idx === -1) return; // nincs következő — updateBtn már elrejtette
+      const cur = sections[Math.max(0, idx - 1)];
+      if (nextBtn.parentElement !== cur) cur.appendChild(nextBtn);
+    };
+    window.addEventListener('scroll', place, { passive: true });
+    place();
   }
 }
 
