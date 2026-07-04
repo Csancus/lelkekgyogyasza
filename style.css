@@ -136,6 +136,11 @@ p + p { margin-top: .8rem; }
 .hero__carousel-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); transition: background .3s, transform .3s; display: inline-block; cursor: pointer; }
 .hero__carousel-dots span.active { background: var(--white); transform: scale(1.35); }
 
+/* Kompakt hero (városoldalak) */
+.hero--compact { min-height: 0; padding: 7.5rem 0 3.5rem; }
+.hero--compact .hero__title { font-size: clamp(2.2rem, 5vw, 3.4rem); margin-bottom: 1.5rem; }
+.hero--compact .hero__carousel { margin-top: 1.5rem; }
+
 /* ===== VERS SECTION ===== */
 .vers-section { background: linear-gradient(160deg, #1E3B20 0%, #2A4D2C 50%, #1A3520 100%); padding: 5.5rem 0; position: relative; overflow: hidden; text-align: center; }
 .vers-deco { position: absolute; pointer-events: none; width: 160px; height: 320px; }
