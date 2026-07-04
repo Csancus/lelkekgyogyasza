@@ -96,27 +96,42 @@
       <p id="admLoginErr" style="color:#c0392b;font-size:.85rem;margin:.5rem 0 0"></p>
     </div>
     <div id="adminForm" hidden>
-      <h3>Új esemény</h3>
-      <label>Cím*<br><input type="text" id="evTitle"></label>
-      <label>Borítókép feltöltése<br><input type="file" id="evImageFile" accept="image/*"></label>
-      <label>…vagy borítókép URL<br><input type="url" id="evImage" placeholder="https://... (kép link)"></label>
-      <label>Dátum*<br><input type="date" id="evDate"></label>
-      <label>Időpont<br><input type="text" id="evTime" placeholder="pl. 9:00–17:00"></label>
-      <label>Várható hossz<br><input type="text" id="evDuration" placeholder="pl. kb. 3 óra"></label>
-      <label>Helyszín<br><input type="text" id="evLoc" placeholder="pl. 1035 Budapest, Raktár utca 25-31. vagy Online"></label>
-      <label>Leírás</label>
-      <div class="rt-toolbar">
-        <button type="button" data-cmd="bold"><b>B</b></button>
-        <button type="button" data-cmd="italic"><i>I</i></button>
-        <button type="button" data-cmd="insertUnorderedList">• Lista</button>
+      <h3 id="admFormTitle">Új esemény</h3>
+      <div class="adm-grid">
+        <label class="adm-full">Cím*<br><input type="text" id="evTitle"></label>
+        <label>Borítókép feltöltése<br><input type="file" id="evImageFile" accept="image/*"></label>
+        <label>…vagy borítókép URL<br><input type="url" id="evImage" placeholder="https://... (kép link)"></label>
+        <label>Dátum*<br><input type="date" id="evDate"></label>
+        <label>Időpont<br><input type="text" id="evTime" placeholder="pl. 9:00–17:00"></label>
+        <label>Várható hossz<br><input type="text" id="evDuration" placeholder="pl. kb. 3 óra"></label>
+        <label>Helyszín<br><input type="text" id="evLoc" placeholder="pl. 1035 Budapest, Raktár utca 25-31."></label>
+        <div class="adm-full">
+          <label>Leírás</label>
+          <div class="rt-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• Lista</button>
+          </div>
+          <div id="evDesc" class="rt-editor" contenteditable="true"></div>
+        </div>
+        <label>Jelentkezési link (Google Form)<br><input type="url" id="evSignup" placeholder="https://forms.gle/..."></label>
+        <label>Facebook esemény link<br><input type="url" id="evFb" placeholder="facebook.com/events/..."></label>
       </div>
-      <div id="evDesc" class="rt-editor" contenteditable="true"></div>
-      <label>Jelentkezési link (pl. Google Form)<br><input type="url" id="evSignup" placeholder="https://forms.gle/..."></label>
-      <label>Facebook esemény link<br><input type="url" id="evFb" placeholder="https://facebook.com/events/..."></label>
       <button class="btn btn--primary btn--sm" id="evSaveBtn">Esemény mentése</button>
       <p id="admFormMsg" style="font-size:.85rem;margin:.5rem 0 0"></p>
     </div>
     <button id="adminClose" class="admin-panel__close" aria-label="Bezárás">×</button>
+  </div>
+</div>
+
+<div id="confirmModal" class="admin-panel" hidden>
+  <div class="admin-panel__inner" style="max-width:380px;text-align:center">
+    <h3 style="margin-bottom:.5rem">Biztosan törlöd?</h3>
+    <p id="confirmText" style="font-size:.9rem;color:var(--text-soft);margin:0 0 1.25rem"></p>
+    <div style="display:flex;gap:.75rem;justify-content:center">
+      <button class="btn btn--outline btn--sm" id="confirmNo">Mégse</button>
+      <button class="btn btn--primary btn--sm" id="confirmYes" style="background:#a94436">Törlés</button>
+    </div>
   </div>
 </div>
 
@@ -173,9 +188,12 @@
     }).join('');
     list.querySelectorAll('[data-del]').forEach(function (b) {
       b.addEventListener('click', function () {
-        if (!confirm('Biztosan törlöd?')) return;
-        fetch(API, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pass, id: b.dataset.del }) })
-          .then(function (r) { return r.json(); }).then(render);
+        var ev = null;
+        upcoming.forEach(function (x) { if (x.id === b.dataset.del) ev = x; });
+        askConfirm(ev ? ev.title : 'esemény', function () {
+          fetch(API, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pass, id: b.dataset.del }) })
+            .then(function (r) { return r.json(); }).then(render);
+        });
       });
     });
     list.querySelectorAll('[data-edit]').forEach(function (b) {
@@ -194,6 +212,7 @@
         document.getElementById('evSignup').value = ev.signupUrl || '';
         document.getElementById('evFb').value = ev.fbUrl || '';
         document.getElementById('evSaveBtn').textContent = 'Módosítás mentése';
+        document.getElementById('admFormTitle').textContent = 'Esemény szerkesztése';
         document.getElementById('adminPanel').hidden = false;
       });
     });
@@ -217,13 +236,27 @@
   function bindAdminBtn() {
     var adminBtn = document.getElementById('adminOpenBtn');
     if (adminBtn) adminBtn.addEventListener('click', openAdmin);
+    document.getElementById('confirmNo').addEventListener('click', function () {
+      document.getElementById('confirmModal').hidden = true; confirmCb = null;
+    });
+    document.getElementById('confirmYes').addEventListener('click', function () {
+      document.getElementById('confirmModal').hidden = true;
+      if (confirmCb) { confirmCb(); confirmCb = null; }
+    });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindAdminBtn);
   else bindAdminBtn();
 
+  var confirmCb = null;
+  function askConfirm(title, cb) {
+    confirmCb = cb;
+    document.getElementById('confirmText').textContent = '„' + title + '" véglegesen törlődik.';
+    document.getElementById('confirmModal').hidden = false;
+  }
+
   var a = 0, b = 0;
   function openAdmin() {
-    a = 2 + Math.floor(Math.random() * 8); b = 1 + Math.floor(Math.random() * 9);
+    a = 10 + Math.floor(Math.random() * 80); b = 1 + Math.floor(Math.random() * 9);
     document.getElementById('admCaptchaLabel').textContent = 'Biztonsági kérdés: mennyi ' + a + ' + ' + b + '?';
     document.getElementById('admCaptcha').placeholder = a + ' + ' + b + ' = ?';
     document.getElementById('admCaptcha').value = '';
@@ -241,7 +274,14 @@
   });
   document.getElementById('admLoginBtn').addEventListener('click', function () {
     var err = document.getElementById('admLoginErr');
-    if (parseInt(document.getElementById('admCaptcha').value, 10) !== a + b) { err.textContent = 'Hibás az összeadás eredménye.'; return; }
+    if (parseInt(document.getElementById('admCaptcha').value, 10) !== a + b) {
+      err.textContent = 'Hibás az összeadás eredménye.';
+      a = 10 + Math.floor(Math.random() * 80); b = 1 + Math.floor(Math.random() * 9);
+      document.getElementById('admCaptchaLabel').textContent = 'Biztonsági kérdés: mennyi ' + a + ' + ' + b + '?';
+      document.getElementById('admCaptcha').placeholder = a + ' + ' + b + ' = ?';
+      document.getElementById('admCaptcha').value = '';
+      return;
+    }
     pass = document.getElementById('admPass').value;
     fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pass, event: {} }) })
       .then(function (r) {
@@ -296,6 +336,7 @@
         msg.textContent = 'Elmentve!'; msg.style.color = 'var(--sage-deep)';
         editingId = null;
         document.getElementById('evSaveBtn').textContent = 'Esemény mentése';
+        document.getElementById('admFormTitle').textContent = 'Új esemény';
         document.getElementById('evTitle').value = ''; document.getElementById('evDesc').innerHTML = '';
         document.getElementById('evImage').value = ''; document.getElementById('evSignup').value = ''; document.getElementById('evFb').value = '';
         document.getElementById('evImageFile').value = '';
