@@ -346,7 +346,7 @@ p + p { margin-top: .8rem; }
 .blog-card__avatar { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
 .blog-card__read { color: var(--sage-deep); font-weight: 600; font-size: .82rem; }
 .blog-card__read:hover { color: var(--sage); }
-.nav__active { color: var(--sage-deep) !important; font-weight: 600 !important; }
+.nav__active { color: var(--viragos-cream) !important; font-weight: 600 !important; }
 
 /* ===== BREADCRUMB ===== */
 .breadcrumb { background: var(--cream-mid); border-bottom: 1px solid var(--border); padding: .55rem 0; font-size: .78rem; margin-top: 70px; }
