@@ -98,7 +98,8 @@
     <div id="adminForm" hidden>
       <h3>Új esemény</h3>
       <label>Cím*<br><input type="text" id="evTitle"></label>
-      <label>Borítókép URL<br><input type="url" id="evImage" placeholder="https://... (kép link)"></label>
+      <label>Borítókép feltöltése<br><input type="file" id="evImageFile" accept="image/*"></label>
+      <label>…vagy borítókép URL<br><input type="url" id="evImage" placeholder="https://... (kép link)"></label>
       <label>Dátum*<br><input type="date" id="evDate"></label>
       <label>Időpont<br><input type="text" id="evTime" placeholder="pl. 9:00–17:00"></label>
       <label>Várható hossz<br><input type="text" id="evDuration" placeholder="pl. kb. 3 óra"></label>
@@ -164,7 +165,7 @@
         '<div class="esemeny-card__grid">' +
         '<div class="esemeny-card__date"><span>' + fmtDate(e.date) + '</span>' + (e.time ? '<small>' + esc(e.time) + '</small>' : '') + (e.duration ? '<small>' + esc(e.duration) + '</small>' : '') + '</div>' +
         '<div class="esemeny-card__body"><h3>' + esc(e.title) + '</h3>' +
-        (e.location ? '<p class="esemeny-card__loc">📍 ' + esc(e.location) + '</p>' : '') +
+        (e.location ? '<p class="esemeny-card__loc">📍 <a href="https://maps.google.com/?q=' + encodeURIComponent(e.location) + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">' + esc(e.location) + '</a></p>' : '') +
         (e.desc ? '<div class="esemeny-card__desc">' + rich(e.desc) + '</div>' : '') +
         signup + fb +
         (admin ? ' <button class="btn btn--outline btn--sm" data-edit="' + e.id + '">Szerkesztés</button> <button class="btn btn--outline btn--sm" data-del="' + e.id + '">Törlés</button>' : '') +
@@ -251,12 +252,34 @@
         fetch(API).then(function (x) { return x.json(); }).then(render);
       });
   });
+  function readImageFile(cb) {
+    var f = document.getElementById('evImageFile').files[0];
+    if (!f) { cb(''); return; }
+    var img = new Image();
+    var fr = new FileReader();
+    fr.onload = function () { img.src = fr.result; };
+    img.onload = function () {
+      var maxW = 1200;
+      var w = Math.min(img.width, maxW);
+      var h = Math.round(img.height * (w / img.width));
+      var cv = document.createElement('canvas');
+      cv.width = w; cv.height = h;
+      cv.getContext('2d').drawImage(img, 0, 0, w, h);
+      cb(cv.toDataURL('image/jpeg', 0.8));
+    };
+    fr.readAsDataURL(f);
+  }
+
   document.getElementById('evSaveBtn').addEventListener('click', function () {
+    readImageFile(saveEvent);
+  });
+
+  function saveEvent(uploadedImage) {
     var msg = document.getElementById('admFormMsg');
     var ev = {
       id: editingId || undefined,
       title: document.getElementById('evTitle').value.trim(),
-      image: document.getElementById('evImage').value.trim(),
+      image: uploadedImage || document.getElementById('evImage').value.trim(),
       date: document.getElementById('evDate').value,
       time: document.getElementById('evTime').value.trim(),
       duration: document.getElementById('evDuration').value.trim(),
@@ -275,9 +298,10 @@
         document.getElementById('evSaveBtn').textContent = 'Esemény mentése';
         document.getElementById('evTitle').value = ''; document.getElementById('evDesc').innerHTML = '';
         document.getElementById('evImage').value = ''; document.getElementById('evSignup').value = ''; document.getElementById('evFb').value = '';
+        document.getElementById('evImageFile').value = '';
         render(d);
       });
-  });
+  }
 })();
 </script>
 

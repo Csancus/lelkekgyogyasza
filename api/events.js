@@ -58,11 +58,20 @@ export default async function handler(req, res) {
         .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
         .replace(/javascript:/gi, '')
         .slice(0, 5000);
-    const url = (u) => (/^https?:\/\//i.test(String(u || '')) ? String(u).slice(0, 500) : '');
+    const url = (u) => {
+      let v = String(u || '').trim();
+      if (v && !/^https?:\/\//i.test(v) && /^[\w.-]+\.[a-z]{2,}([\/?#]|$)/i.test(v)) v = 'https://' + v;
+      return /^https?:\/\//i.test(v) ? v.slice(0, 500) : '';
+    };
+    const img = (u) => {
+      const v = String(u || '').trim();
+      if (/^data:image\/(jpeg|png|webp);base64,/i.test(v) && v.length < 900000) return v;
+      return url(v);
+    };
     events.push({
       id: e.id || Math.random().toString(36).slice(2) + Date.now().toString(36),
       title: String(e.title).slice(0, 200),
-      image: url(e.image),
+      image: img(e.image),
       date: String(e.date).slice(0, 10),
       time: String(e.time || '').slice(0, 30),
       duration: String(e.duration || '').slice(0, 60),
@@ -71,7 +80,8 @@ export default async function handler(req, res) {
       signupUrl: url(e.signupUrl),
       fbUrl: url(e.fbUrl),
     });
-    events.sort((a, b) => a.date.localeCompare(b.date));
+    events[events.length - 1].createdAt = Date.now();
+    events.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
     await kvSet(events);
     return res.status(200).json(events);
   }
