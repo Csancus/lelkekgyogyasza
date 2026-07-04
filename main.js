@@ -175,3 +175,17 @@ document.querySelectorAll('a[data-booking]').forEach(btn => {
     }
   });
 });
+
+// Árkártya: kattintható sorok — a kiválasztott csomag kerül az üzenetbe
+document.querySelectorAll('.mprice-card').forEach(card => {
+  const btn = card.querySelector('a[data-booking]');
+  const rows = card.querySelectorAll('.mprice-row[data-msg]');
+  if (!btn || !rows.length) return;
+  const select = row => {
+    rows.forEach(r => r.classList.remove('mprice-row--selected'));
+    row.classList.add('mprice-row--selected');
+    btn.dataset.booking = row.dataset.msg;
+  };
+  rows.forEach(row => row.addEventListener('click', () => select(row)));
+  select(rows[0]);
+});

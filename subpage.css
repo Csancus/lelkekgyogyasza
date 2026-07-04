@@ -560,3 +560,8 @@
 .kine-pill { background: #8b9068; color: #fff; border-radius: var(--radius); padding: 1rem 1.4rem; font-size: .92rem; line-height: 1.55; }
 .kine-pill strong { color: #fff; }
 @media (max-width: 640px) { .kine-pills { grid-template-columns: 1fr; } }
+
+/* -- Árkártya: kattintható csomag-sorok -- */
+.mprice-row[data-msg] { cursor: pointer; border-radius: 8px; transition: background .15s; }
+.mprice-row[data-msg]:hover { background: var(--rose-pale); }
+.mprice-row--selected { background: var(--rose-pale); box-shadow: inset 3px 0 0 var(--viragos-rose-dark); }
