@@ -1,7 +1,7 @@
 // Események API – Upstash Redis (Vercel KV) REST
 const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;
-const ADMIN_PASS = process.env.ADMIN_PASSWORD || process.env.EVENTS_ADMIN_PASSWORD || 'lelkek';
+const ADMIN_PASS = process.env.ADMIN_PASSWORD || process.env.EVENTS_ADMIN_PASSWORD || '';
 const KEY = 'esemenyek';
 
 async function kvGet() {
@@ -32,7 +32,17 @@ export default async function handler(req, res) {
   }
 
   const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
-  if (body.password !== ADMIN_PASS) {
+
+  // brute-force vedelem: max 20 hibas proba / ora / IP
+  const ip = (req.headers['x-forwarded-for'] || 'ismeretlen').split(',')[0].trim();
+  const rlKey = `evlogin:${ip}`;
+  const rlRes = await fetch(`${KV_URL}/get/${rlKey}`, { headers: { Authorization: `Bearer ${KV_TOKEN}` } }).then((r) => r.json());
+  if (parseInt(rlRes.result || '0', 10) >= 20) {
+    return res.status(429).json({ error: 'Túl sok próbálkozás. Próbáld újra egy óra múlva.' });
+  }
+  if (!ADMIN_PASS || typeof body.password !== 'string' || body.password !== ADMIN_PASS) {
+    await fetch(`${KV_URL}/incr/${rlKey}`, { headers: { Authorization: `Bearer ${KV_TOKEN}` } });
+    await fetch(`${KV_URL}/expire/${rlKey}/3600`, { headers: { Authorization: `Bearer ${KV_TOKEN}` } });
     return res.status(401).json({ error: 'Hibás jelszó.' });
   }
 
