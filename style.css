@@ -87,9 +87,7 @@ p + p { margin-top: .8rem; }
 .nav__inner { max-width: var(--max-w); margin: 0 auto; padding: 0 1.75rem; height: 70px; display: flex; align-items: center; position: relative; }
 .nav__logo { font-family: var(--font-head); font-size: 1.2rem; color: var(--viragos-cream); font-style: italic; display: flex; align-items: center; gap: .5rem; }
 .nav__logo:hover { color: #fff; }
-.nav__logo-leaf { display: flex; align-items: center; }
-.nav__logo-leaf svg path[fill="#7B9E76"] { fill: var(--viragos-cream); }
-.nav__logo-leaf svg path[stroke="#4E7249"] { stroke: rgba(245,236,217,.7); }
+.nav__logo-img { width: 44px; height: 36px; object-fit: contain; flex-shrink: 0; }
 .nav__menu { display: flex; align-items: center; gap: 1rem; list-style: none; flex: 1; justify-content: center; }
 .nav__menu a { font-size: .875rem; font-weight: 500; color: var(--viragos-cream); transition: color var(--transition); }
 .nav__menu a:hover { color: #fff; }
