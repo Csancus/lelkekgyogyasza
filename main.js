@@ -161,3 +161,17 @@ if (form) {
     }
   });
 }
+
+// Booking prefill: data-booking gombok kitöltik a kapcsolat űrlapot
+document.querySelectorAll('a[data-booking]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const msg = document.getElementById('message');
+    if (msg) msg.value = btn.dataset.booking;
+    const svc = document.getElementById('service');
+    if (svc && btn.dataset.service) {
+      for (const o of svc.options) {
+        if (o.text.indexOf(btn.dataset.service) !== -1) { o.selected = true; break; }
+      }
+    }
+  });
+});
