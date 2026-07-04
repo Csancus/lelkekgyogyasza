@@ -311,8 +311,10 @@
 <!-- Az ember a szakember mögött -->
 <section class="section rolam-intro" style="padding-top:1rem">
   <div class="container container-sm">
-    <span class="section__tag">Az ember a szakember mögött</span>
-    <h2 class="rolam-intro__title" style="margin-top:.75rem">Az élet folyamatos tanulás és fejlődés</h2>
+    <div class="section__head" style="margin-bottom:1.25rem">
+      <span class="section__tag">Az ember a szakember mögött</span>
+      <h2 class="rolam-intro__title">Az élet folyamatos tanulás és fejlődés</h2>
+    </div>
     <p>Feleségként és két gyermek édesanyjaként nap mint nap megtapasztalom, hogy az élet folyamatos tanulás és fejlődés. Nem kívülről nézem azt, amiben segítek — magam is benne élek.</p>
   </div>
 </section>
@@ -335,6 +337,91 @@
         <a href="#modszerek" class="btn btn--primary">Szolgáltatások</a>
         <a href="/#kapcsolat" class="btn btn--primary">Írj nekem</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section kapcsolat" id="kapcsolat">
+  <div class="container container--split">
+    <div class="kapcsolat__info">
+      <p class="section__tag">Kapcsolat</p>
+      <h2>Készen állsz<br>a változásra?</h2>
+      <p class="lead">Írj, vagy foglalj időpontot! Általában 1-2 munkanapon belül visszajelzek.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item__icon">📍</div>
+          <div>
+            <strong>Helyszín</strong>
+            <p>1035 Budapest, Raktár utca 25-31.</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__icon">📞</div>
+          <div>
+            <strong>Telefon</strong>
+            <p><a href="tel:+36706182877">+36 70 618 2877</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__icon">✉️</div>
+          <div>
+            <strong>Email</strong>
+            <p><a href="mailto:n.b.ildiko72@gmail.com">n.b.ildiko72@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="price-badge">💚 Kineziológia / egyéni családállítás: 20 000 Ft &nbsp;·&nbsp; Csoportos: 22 000 Ft &nbsp;·&nbsp; Segítőknek: 8 000 Ft</div>
+    </div>
+    <div class="kapcsolat__form">
+      <form class="form" id="contactForm">
+        <h3 class="form__title">Írj nekem</h3>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="name">Neved *</label>
+            <input type="text" id="name" name="name" required placeholder="Kovács Anna">
+          </div>
+          <div class="form__group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="email@example.com">
+          </div>
+        </div>
+        <div class="form__group">
+          <label for="phone">Telefonszám</label>
+          <input type="tel" id="phone" name="phone" placeholder="+36 30 123 4567">
+        </div>
+        <div class="form__group">
+          <label for="service">Melyik módszer érdekel?</label>
+          <select id="service" name="service">
+            <option value="">Válassz módszert…</option>
+            <option>Kineziológia (TEK / One Brain / Brain Gym)</option>
+            <option>Egyéni Családállítás</option>
+            <option>Bach Virágterápia</option>
+            <option>Metamorf Masszázs</option>
+            <option>Numerológia</option>
+            <option>Érzelmi Kód – Stresszoldás</option>
+            <option>Még nem tudom, segíts dönteni!</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <label for="message">Üzenet</label>
+          <textarea id="message" name="message" rows="4" placeholder="Írd le röviden, miben szeretnél segítséget…"></textarea>
+        </div>
+        <div class="form__checkbox">
+          <input type="checkbox" id="gdpr" name="gdpr" required>
+          <label for="gdpr">Elolvastam és elfogadom az <a href="/adatkezelesi" target="_blank">adatkezelési tájékoztatót</a>, és hozzájárulok adataim kezeléséhez az időpontfoglalás céljából.</label>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Elküldöm →</button>
+        <p class="form__note">🔒 Adataidat bizalmasan kezelem, harmadik félnek nem adom át.</p>
+        <div id="formThanks" style="display:none;margin-top:1.5rem;text-align:center;padding:1.5rem;background:var(--sage-pale);border-radius:var(--radius);">
+          <div class="form__thanks-icon">✓</div>
+          <p style="color:var(--sage-deep);font-weight:600;font-size:1.05rem;margin-top:.75rem">Köszönöm! 48 órán belül keresni fogom!</p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <div class="map-wrap">
+      <iframe src="https://maps.google.com/maps?q=1035+Budapest+Raktár+utca+25-31&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Berényi Ildikó rendelő helyszíne – 1035 Budapest, Raktár utca 25-31."></iframe>
     </div>
   </div>
 </section>
