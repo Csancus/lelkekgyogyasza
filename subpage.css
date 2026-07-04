@@ -572,3 +572,26 @@
 .rolam-closing p { color: rgba(255,255,255,.85); }
 .rolam-closing .btn--primary { background: #fff; color: var(--sage-deep); }
 .rolam-closing .btn--primary:hover { background: var(--cream); color: var(--sage-deep); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+
+/* -- Események -- */
+.esemeny-card { display: grid; grid-template-columns: 130px 1fr; gap: 1.25rem; background: #fff; border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 1.4rem 1.6rem; margin-bottom: 1rem; align-items: start; }
+.esemeny-card__date { text-align: center; background: var(--sage-pale); border-radius: var(--radius-sm); padding: .8rem .5rem; }
+.esemeny-card__date span { display: block; font-weight: 700; color: var(--sage-deep); font-size: .95rem; }
+.esemeny-card__date small { color: var(--text-soft); font-size: .78rem; }
+.esemeny-card__body h3 { margin: 0 0 .35rem; font-size: 1.15rem; }
+.esemeny-card__body p { font-size: .9rem; margin: 0 0 .6rem; }
+.esemeny-card__loc { color: var(--text-soft); font-size: .82rem !important; }
+.esemeny-card .btn { margin-top: .35rem; }
+@media (max-width: 560px) { .esemeny-card { grid-template-columns: 1fr; } }
+
+.footer-admin-btn { background: none; border: none; color: inherit; opacity: 0; font-size: .7rem; cursor: pointer; margin-left: 1rem; transition: opacity .2s; }
+.footer__bottom:hover .footer-admin-btn { opacity: .55; }
+.footer-admin-btn:hover { opacity: 1 !important; }
+
+.admin-panel { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 500; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.admin-panel__inner { position: relative; background: #fff; border-radius: var(--radius); padding: 2rem; width: 100%; max-width: 420px; max-height: 90vh; overflow: auto; }
+.admin-panel__inner h3 { margin: 0 0 1rem; }
+.admin-panel__inner label { display: block; font-size: .85rem; font-weight: 600; margin: .7rem 0 .2rem; }
+.admin-panel__inner input, .admin-panel__inner textarea { width: 100%; padding: .6rem .8rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: .9rem; }
+.admin-panel__inner .btn { margin-top: 1rem; }
+.admin-panel__close { position: absolute; top: .6rem; right: .9rem; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--text-soft); }
