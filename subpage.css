@@ -348,7 +348,7 @@
 .rolam-vegr__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
 /* -- Rólam: closing note with lotus -- */
-.rolam-closing { background: var(--cream); padding: 2rem 0 5rem; }
+.rolam-closing { background: linear-gradient(135deg, var(--sage-deep) 0%, #2f4d2a 100%); padding: 4rem 0 4.5rem; }
 .rolam-closing__inner {
   display: grid; grid-template-columns: 140px 1fr; gap: 2rem;
   align-items: center; max-width: 780px;
@@ -569,3 +569,9 @@
 @media (min-width: 641px) {
   .vegzettseg-item:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc(50% - .5rem); margin: 0 auto; }
 }
+
+/* Rólam záró sáv: sötétzöld, invertált */
+.rolam-closing h2 { color: #fff; }
+.rolam-closing p { color: rgba(255,255,255,.85); }
+.rolam-closing .btn--primary { background: #fff; color: var(--sage-deep); }
+.rolam-closing .btn--primary:hover { background: var(--cream); color: var(--sage-deep); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
