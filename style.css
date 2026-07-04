@@ -492,6 +492,7 @@ p + p { margin-top: .8rem; }
 }
 #nextSectionBtn:hover { box-shadow: 0 6px 22px rgba(78,114,73,.5); transform: translateX(-50%) scale(1.08); animation: none; }
 #nextSectionBtn.hidden { opacity: 0; pointer-events: none; }
+#nextSectionBtn.nsb--inhero { position: absolute; bottom: 1.1rem; top: auto; z-index: 5; }
 @keyframes nsb-bounce {
   0%,100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(5px); }

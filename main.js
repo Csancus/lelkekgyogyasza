@@ -136,6 +136,12 @@ if (nextBtn) {
   });
   window.addEventListener('scroll', updateBtn, { passive: true });
   updateBtn();
+  // kompakt hero-s oldalakon a nyíl a hero aljához rögzül (nem lebeg)
+  const compactHero = document.querySelector('.hero--compact');
+  if (compactHero) {
+    compactHero.appendChild(nextBtn);
+    nextBtn.classList.add('nsb--inhero');
+  }
 }
 
 // Contact form — AJAX submit, inline thank-you
