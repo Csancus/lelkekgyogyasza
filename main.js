@@ -27,6 +27,18 @@ menu.addEventListener('click', (e) => {
   closeMobileMenu();
 });
 
+// "/#szekcio" linkek: ha a szekció ezen az oldalon is megvan, helyben görgetünk újratöltés nélkül
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="/#"]');
+  if (!a) return;
+  if (a.id === 'navDropdownBtn' && window.innerWidth <= 640) return; // mobilon almenüt nyit
+  const el = document.getElementById(a.getAttribute('href').slice(2));
+  if (!el) return;
+  e.preventDefault();
+  el.scrollIntoView({ behavior: 'smooth' });
+  history.replaceState(null, '', '#' + el.id);
+});
+
 // Nav dropdown – mobile: tap to toggle
 const dropdownBtn = document.getElementById('navDropdownBtn');
 const navDropdown = document.getElementById('navDropdown');
