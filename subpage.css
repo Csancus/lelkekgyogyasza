@@ -644,3 +644,11 @@
 .szervezo-card__stats strong { display: block; font-family: var(--font-head); font-size: 1.25rem; color: var(--sage-deep); }
 .szervezo-card__stats span { font-size: .74rem; color: var(--text-soft); }
 @media (max-width: 640px) { .szervezo-card__stats { margin-left: 0; width: 100%; justify-content: space-between; } }
+
+
+/* Ár-box: nagy ár + gomb */
+.mprice-price { text-align: center; font-family: var(--font-head); font-size: 1.7rem; font-weight: 700; color: var(--sage-deep); margin: .9rem 0 .2rem; line-height: 1.2; }
+.mprice-price small { display: block; font-family: var(--font-body); font-size: .76rem; font-weight: 400; color: var(--text-soft); margin-top: .25rem; }
+.mprice-card__action { text-align: center; padding-bottom: .35rem; }
+
+.subhero__cta { display: inline-flex; }
