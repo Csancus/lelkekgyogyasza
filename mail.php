@@ -20,7 +20,7 @@ if (!$name || !$email) {
     exit;
 }
 
-$to      = 'csanad.peter.czarth@gmail.com';
+$to      = 'csanad.peter.czarth@gmail.com, n.b.ildiko72@gmail.com';
 $subject = '=?UTF-8?B?' . base64_encode('Új érdeklődő – lelkekgyogyasza.hu') . '?=';
 
 $phone_row = $phone
