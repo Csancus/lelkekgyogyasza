@@ -78,6 +78,9 @@
 
 <section class="section" style="padding-top:3.5rem">
   <div class="container" style="max-width:820px">
+    <div id="adminAddWrap" hidden style="text-align:center;margin-bottom:1.5rem">
+      <button class="btn btn--primary btn--sm" id="adminAddBtn" type="button">+ Esemény hozzáadása</button>
+    </div>
     <div id="eventsList" aria-live="polite">
       <p style="text-align:center;color:var(--text-soft)">Események betöltése…</p>
     </div>
@@ -105,6 +108,7 @@
         <label>Időpont<br><input type="text" id="evTime" placeholder="pl. 9:00–17:00"></label>
         <label>Várható hossz<br><input type="text" id="evDuration" placeholder="pl. kb. 3 óra"></label>
         <label>Helyszín<br><input type="text" id="evLoc" placeholder="pl. 1035 Budapest, Raktár utca 25-31."></label>
+        <label>Részvételi díj<br><input type="text" id="evFee" placeholder="pl. 3 500 Ft"></label>
         <div class="adm-full">
           <label>Leírás</label>
           <div class="rt-toolbar">
@@ -181,6 +185,7 @@
         '<div class="esemeny-card__date"><span>' + fmtDate(e.date) + '</span>' + (e.time ? '<small>' + esc(e.time) + '</small>' : '') + (e.duration ? '<small>' + esc(e.duration) + '</small>' : '') + '</div>' +
         '<div class="esemeny-card__body"><h3>' + esc(e.title) + '</h3>' +
         (e.location ? '<p class="esemeny-card__loc">📍 <a href="https://maps.google.com/?q=' + encodeURIComponent(e.location) + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">' + esc(e.location) + '</a></p>' : '') +
+        (e.fee ? '<p class="esemeny-card__loc">💰 Részvételi díj: ' + esc(e.fee) + '</p>' : '') +
         (e.desc ? '<div class="esemeny-card__desc">' + rich(e.desc) + '</div>' : '') +
         signup + fb +
         (admin ? ' <button class="btn btn--outline btn--sm" data-edit="' + e.id + '">Szerkesztés</button> <button class="btn btn--outline btn--sm" data-del="' + e.id + '">Törlés</button>' : '') +
@@ -208,6 +213,7 @@
         document.getElementById('evTime').value = ev.time || '';
         document.getElementById('evDuration').value = ev.duration || '';
         document.getElementById('evLoc').value = ev.location || '';
+        document.getElementById('evFee').value = ev.fee || '';
         document.getElementById('evDesc').innerHTML = rich(ev.desc || '');
         document.getElementById('evSignup').value = ev.signupUrl || '';
         document.getElementById('evFb').value = ev.fbUrl || '';
@@ -236,6 +242,10 @@
   function bindAdminBtn() {
     var adminBtn = document.getElementById('adminOpenBtn');
     if (adminBtn) adminBtn.addEventListener('click', openAdmin);
+    document.getElementById('adminAddBtn').addEventListener('click', function () {
+      resetForm();
+      document.getElementById('adminPanel').hidden = false;
+    });
     document.getElementById('confirmNo').addEventListener('click', function () {
       document.getElementById('confirmModal').hidden = true; confirmCb = null;
     });
@@ -246,6 +256,22 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindAdminBtn);
   else bindAdminBtn();
+
+  function resetForm() {
+    editingId = null;
+    ['evTitle', 'evImage', 'evTime', 'evDuration', 'evLoc', 'evFee', 'evSignup', 'evFb'].forEach(function (id) {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('evDate').value = '';
+    document.getElementById('evDesc').innerHTML = '';
+    document.getElementById('evImageFile').value = '';
+    document.getElementById('evSaveBtn').textContent = 'Esemény mentése';
+    document.getElementById('admFormTitle').textContent = 'Új esemény';
+  }
+
+  function showAdminUi() {
+    document.getElementById('adminAddWrap').hidden = !admin;
+  }
 
   var confirmCb = null;
   function askConfirm(title, cb) {
@@ -289,6 +315,7 @@
         admin = true;
         document.getElementById('adminLogin').hidden = true;
         document.getElementById('adminForm').hidden = false;
+        showAdminUi();
         fetch(API).then(function (x) { return x.json(); }).then(render);
       });
   });
@@ -324,6 +351,7 @@
       time: document.getElementById('evTime').value.trim(),
       duration: document.getElementById('evDuration').value.trim(),
       location: document.getElementById('evLoc').value.trim(),
+      fee: document.getElementById('evFee').value.trim(),
       desc: document.getElementById('evDesc').innerHTML.trim(),
       signupUrl: document.getElementById('evSignup').value.trim(),
       fbUrl: document.getElementById('evFb').value.trim()
@@ -333,14 +361,11 @@
       .then(function (r) { return r.json(); })
       .then(function (d) {
         if (d.error) { msg.textContent = d.error; msg.style.color = '#c0392b'; return; }
-        msg.textContent = 'Elmentve!'; msg.style.color = 'var(--sage-deep)';
-        editingId = null;
-        document.getElementById('evSaveBtn').textContent = 'Esemény mentése';
-        document.getElementById('admFormTitle').textContent = 'Új esemény';
-        document.getElementById('evTitle').value = ''; document.getElementById('evDesc').innerHTML = '';
-        document.getElementById('evImage').value = ''; document.getElementById('evSignup').value = ''; document.getElementById('evFb').value = '';
-        document.getElementById('evImageFile').value = '';
+        msg.textContent = '';
+        resetForm();
+        document.getElementById('adminPanel').hidden = true;
         render(d);
+        document.getElementById('eventsList').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
   }
 })();
