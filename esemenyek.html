@@ -248,7 +248,7 @@
         (e.location ? '<p class="esemeny-card__loc">📍 <a href="https://maps.google.com/?q=' + encodeURIComponent(e.location) + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">' + esc(e.location) + '</a></p>' : '') +
         (e.fee ? '<p class="esemeny-card__loc">💰 Részvételi díj: ' + esc(e.fee) + '</p>' : '') +
         (e.desc ? '<div class="esemeny-card__desc collapsed">' + rich(e.desc) + '</div>' : '') +
-        signup + fb +
+        '<div class="esemeny-card__actions">' + signup + fb + '</div>' +
         (admin ? ' <button class="btn btn--outline btn--sm" data-edit="' + e.id + '">Szerkesztés</button> <button class="btn btn--outline btn--sm" data-del="' + e.id + '">Törlés</button>' : '') +
         '</div></div></div>';
     }).join('');
