@@ -537,11 +537,8 @@
 /* -- Kineziologia: method callout blocks, kinek-pills, inline CTA -- */
 .kine-method { max-width: 920px; margin: 0 auto; padding: 3rem 1.75rem 0; }
 .kine-callout {
-  background: var(--viragos-cream);
-  border: 1px solid var(--cream-dark);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: 1.4rem 1.75rem;
+  text-align: center;
+  padding: 1rem 1.75rem 0;
 }
 .kine-callout h2 { font-size: clamp(1.2rem, 2.5vw, 1.45rem); margin: 0 0 .35rem; }
 .kine-callout p { font-size: .9rem; color: var(--text-soft); margin: 0; line-height: 1.6; }
