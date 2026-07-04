@@ -1,4 +1,11 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/bach-viragterapi",
+      "destination": "/bach-viragterapia",
+      "permanent": true
+    }
+  ]
 }
