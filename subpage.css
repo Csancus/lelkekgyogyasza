@@ -309,15 +309,16 @@
   margin: 0 auto;
 }
 
-/* -- Rólam: hitvallás cards (3x2) -- */
+/* -- Rólam: hitvallás cards (2x2) -- */
 .rolam-hitvallas { background: var(--cream); }
 .rolam-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
   max-width: 960px;
   margin: 0 auto;
 }
+.rolam-hitvallas__actions { text-align: center; margin-top: 2.25rem; }
 .rolam-card {
   background: #fff;
   padding: 1.6rem;
