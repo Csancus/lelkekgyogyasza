@@ -42,13 +42,24 @@ export default async function handler(req, res) {
     const e = body.event || {};
     if (!e.title || !e.date) return res.status(400).json({ error: 'A cím és a dátum kötelező.' });
     if (e.id) events = events.filter((ev) => ev.id !== e.id);
+    const sanitize = (html) =>
+      String(html || '')
+        .replace(/<\/?(script|style|iframe|object|embed|link|meta)[^>]*>/gi, '')
+        .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+        .replace(/javascript:/gi, '')
+        .slice(0, 5000);
+    const url = (u) => (/^https?:\/\//i.test(String(u || '')) ? String(u).slice(0, 500) : '');
     events.push({
       id: e.id || Math.random().toString(36).slice(2) + Date.now().toString(36),
       title: String(e.title).slice(0, 200),
+      image: url(e.image),
       date: String(e.date).slice(0, 10),
-      time: String(e.time || '').slice(0, 20),
+      time: String(e.time || '').slice(0, 30),
+      duration: String(e.duration || '').slice(0, 60),
       location: String(e.location || '').slice(0, 200),
-      desc: String(e.desc || '').slice(0, 1000),
+      desc: sanitize(e.desc),
+      signupUrl: url(e.signupUrl),
+      fbUrl: url(e.fbUrl),
     });
     events.sort((a, b) => a.date.localeCompare(b.date));
     await kvSet(events);

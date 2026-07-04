@@ -98,10 +98,20 @@
     <div id="adminForm" hidden>
       <h3>Új esemény</h3>
       <label>Cím*<br><input type="text" id="evTitle"></label>
+      <label>Borítókép URL<br><input type="url" id="evImage" placeholder="https://... (kép link)"></label>
       <label>Dátum*<br><input type="date" id="evDate"></label>
       <label>Időpont<br><input type="text" id="evTime" placeholder="pl. 9:00–17:00"></label>
+      <label>Várható hossz<br><input type="text" id="evDuration" placeholder="pl. kb. 3 óra"></label>
       <label>Helyszín<br><input type="text" id="evLoc" placeholder="pl. 1035 Budapest, Raktár utca 25-31. vagy Online"></label>
-      <label>Leírás<br><textarea id="evDesc" rows="3"></textarea></label>
+      <label>Leírás</label>
+      <div class="rt-toolbar">
+        <button type="button" data-cmd="bold"><b>B</b></button>
+        <button type="button" data-cmd="italic"><i>I</i></button>
+        <button type="button" data-cmd="insertUnorderedList">• Lista</button>
+      </div>
+      <div id="evDesc" class="rt-editor" contenteditable="true"></div>
+      <label>Jelentkezési link (pl. Google Form)<br><input type="url" id="evSignup" placeholder="https://forms.gle/..."></label>
+      <label>Facebook esemény link<br><input type="url" id="evFb" placeholder="https://facebook.com/events/..."></label>
       <button class="btn btn--primary btn--sm" id="evSaveBtn">Esemény mentése</button>
       <p id="admFormMsg" style="font-size:.85rem;margin:.5rem 0 0"></p>
     </div>
@@ -122,6 +132,19 @@
 
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
 
+  function rich(html) {
+    var d = document.createElement('div');
+    d.innerHTML = html || '';
+    d.querySelectorAll('script,style,iframe,object,embed,link,meta').forEach(function (n) { n.remove(); });
+    d.querySelectorAll('*').forEach(function (n) {
+      for (var i = n.attributes.length - 1; i >= 0; i--) {
+        var at = n.attributes[i];
+        if (/^on/i.test(at.name) || (at.name === 'href' && /^javascript:/i.test(at.value))) n.removeAttribute(at.name);
+      }
+    });
+    return d.innerHTML;
+  }
+
   function render(events) {
     var list = document.getElementById('eventsList');
     var today = new Date().toISOString().slice(0, 10);
@@ -131,14 +154,21 @@
       return;
     }
     list.innerHTML = upcoming.map(function (e) {
-      return '<div class="esemeny-card">' +
-        '<div class="esemeny-card__date"><span>' + fmtDate(e.date) + '</span>' + (e.time ? '<small>' + esc(e.time) + '</small>' : '') + '</div>' +
+      var meta = fmtDate(e.date) + (e.time ? ' · ' + esc(e.time) : '') + (e.duration ? ' · ' + esc(e.duration) : '');
+      var signup = e.signupUrl
+        ? '<a href="' + esc(e.signupUrl) + '" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Jelentkezem</a>'
+        : '<a href="#kapcsolat" class="btn btn--primary btn--sm" data-service="Egyéni Családállítás" data-booking="Jelentkezni szeretnék erre az eseményre: ' + esc(e.title) + ' (' + fmtDate(e.date) + ').">Jelentkezem</a>';
+      var fb = e.fbUrl ? ' <a href="' + esc(e.fbUrl) + '" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Facebook esemény</a>' : '';
+      return '<div class="esemeny-card' + (e.image ? ' esemeny-card--img' : '') + '">' +
+        (e.image ? '<img class="esemeny-card__cover" src="' + esc(e.image) + '" alt="" loading="lazy">' : '') +
+        '<div class="esemeny-card__grid">' +
+        '<div class="esemeny-card__date"><span>' + fmtDate(e.date) + '</span>' + (e.time ? '<small>' + esc(e.time) + '</small>' : '') + (e.duration ? '<small>' + esc(e.duration) + '</small>' : '') + '</div>' +
         '<div class="esemeny-card__body"><h3>' + esc(e.title) + '</h3>' +
         (e.location ? '<p class="esemeny-card__loc">📍 ' + esc(e.location) + '</p>' : '') +
-        (e.desc ? '<p>' + esc(e.desc) + '</p>' : '') +
-        '<a href="#kapcsolat" class="btn btn--primary btn--sm" data-service="Egyéni Családállítás" data-booking="Jelentkezni szeretnék erre az eseményre: ' + esc(e.title) + ' (' + fmtDate(e.date) + ').">Jelentkezem</a>' +
+        (e.desc ? '<div class="esemeny-card__desc">' + rich(e.desc) + '</div>' : '') +
+        signup + fb +
         (admin ? ' <button class="btn btn--outline btn--sm" data-edit="' + e.id + '">Szerkesztés</button> <button class="btn btn--outline btn--sm" data-del="' + e.id + '">Törlés</button>' : '') +
-        '</div></div>';
+        '</div></div></div>';
     }).join('');
     list.querySelectorAll('[data-del]').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -154,10 +184,14 @@
         if (!ev) return;
         editingId = ev.id;
         document.getElementById('evTitle').value = ev.title || '';
+        document.getElementById('evImage').value = ev.image || '';
         document.getElementById('evDate').value = ev.date || '';
         document.getElementById('evTime').value = ev.time || '';
+        document.getElementById('evDuration').value = ev.duration || '';
         document.getElementById('evLoc').value = ev.location || '';
-        document.getElementById('evDesc').value = ev.desc || '';
+        document.getElementById('evDesc').innerHTML = rich(ev.desc || '');
+        document.getElementById('evSignup').value = ev.signupUrl || '';
+        document.getElementById('evFb').value = ev.fbUrl || '';
         document.getElementById('evSaveBtn').textContent = 'Módosítás mentése';
         document.getElementById('adminPanel').hidden = false;
       });
@@ -190,6 +224,13 @@
     document.getElementById('admCaptcha').value = '';
     document.getElementById('adminPanel').hidden = false;
   }
+  document.querySelectorAll('.rt-toolbar button').forEach(function (b) {
+    b.addEventListener('click', function (ev2) {
+      ev2.preventDefault();
+      document.getElementById('evDesc').focus();
+      document.execCommand(b.dataset.cmd, false, null);
+    });
+  });
   document.getElementById('adminClose').addEventListener('click', function () {
     document.getElementById('adminPanel').hidden = true;
   });
@@ -211,10 +252,14 @@
     var ev = {
       id: editingId || undefined,
       title: document.getElementById('evTitle').value.trim(),
+      image: document.getElementById('evImage').value.trim(),
       date: document.getElementById('evDate').value,
       time: document.getElementById('evTime').value.trim(),
+      duration: document.getElementById('evDuration').value.trim(),
       location: document.getElementById('evLoc').value.trim(),
-      desc: document.getElementById('evDesc').value.trim()
+      desc: document.getElementById('evDesc').innerHTML.trim(),
+      signupUrl: document.getElementById('evSignup').value.trim(),
+      fbUrl: document.getElementById('evFb').value.trim()
     };
     if (!ev.title || !ev.date) { msg.textContent = 'A cím és a dátum kötelező.'; msg.style.color = '#c0392b'; return; }
     fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pass, event: ev }) })
@@ -224,7 +269,8 @@
         msg.textContent = 'Elmentve!'; msg.style.color = 'var(--sage-deep)';
         editingId = null;
         document.getElementById('evSaveBtn').textContent = 'Esemény mentése';
-        document.getElementById('evTitle').value = ''; document.getElementById('evDesc').value = '';
+        document.getElementById('evTitle').value = ''; document.getElementById('evDesc').innerHTML = '';
+        document.getElementById('evImage').value = ''; document.getElementById('evSignup').value = ''; document.getElementById('evFb').value = '';
         render(d);
       });
   });
