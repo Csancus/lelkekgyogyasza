@@ -378,7 +378,8 @@ p + p { margin-top: .8rem; }
 .post__meta { display: flex; align-items: center; gap: 1rem; font-size: .85rem; color: var(--text-soft); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
 .post__meta-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
 .post__meta strong { color: var(--text); }
-.post__readtime { background: var(--sage-pale); color: var(--sage-deep); font-size: .75rem; font-weight: 600; padding: .25rem .7rem; border-radius: 50px; }
+/* a wrapper div (flex-basis:100%) saját sorba töri balra, a dátum alá */
+.post__readtime { display: inline-block; background: var(--sage-pale); color: var(--sage-deep); font-size: .75rem; font-weight: 600; padding: .25rem .7rem; border-radius: 50px; }
 .post__hero-img { width: 100%; border-radius: var(--radius-lg); margin-bottom: 2.5rem; aspect-ratio: 1200/630; object-fit: cover; }
 .post__toc { background: var(--sage-pale); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; border: 1px solid rgba(123,158,118,.2); }
 .post__toc-title { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--sage-deep); margin-bottom: .75rem; }
@@ -397,7 +398,19 @@ p + p { margin-top: .8rem; }
 .post__body strong { color: var(--text); }
 .post__source { margin-top: 3rem; padding: 1.25rem 1.5rem; background: var(--cream-mid); border-radius: var(--radius-sm); font-size: .82rem; color: var(--text-soft); border-left: 3px solid var(--sage-light); }
 .post__source strong { color: var(--text); }
-.post__cta { margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, var(--sage-pale), var(--rose-pale)); border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--cream-dark); }
+/* További blogcikkek + kapcsolódó módszerek a cikk alján */
+.post__more { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.post__more h2 { font-size: 1.15rem; margin-bottom: 1rem; }
+.post__more ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; }
+.post__more ul li { padding: 0; }
+.post__more a { color: var(--sage-deep); font-weight: 600; font-size: .95rem; transition: color var(--transition); }
+.post__more a:hover { color: var(--sage); }
+.post__related { margin-top: 1.75rem; font-size: .95rem; display: flex; align-items: center; flex-wrap: wrap; gap: .6rem; }
+.post__related strong { color: var(--text); }
+.post__related a { display: inline-block; background: var(--sage-pale); color: var(--sage-deep); font-weight: 600; font-size: .85rem; padding: .35rem 1rem; border-radius: 50px; transition: background var(--transition); }
+.post__related a:hover { background: var(--sage-light); }
+
+.post__cta { margin-top: 2.5rem; padding: 3rem; background: linear-gradient(135deg, var(--sage-pale), var(--rose-pale)); border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--cream-dark); }
 .post__cta h2 { font-size: 1.6rem; margin-bottom: .75rem; }
 .post__cta p { margin-bottom: 1.5rem; }
 @media (max-width: 640px) { .post-wrap { padding: 5rem 1.25rem 4rem; } .post__cta { padding: 2rem 1.25rem; } }
