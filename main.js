@@ -27,6 +27,12 @@ menu.addEventListener('click', (e) => {
   if (a.id === 'navDropdownBtn' && window.innerWidth <= 640) return;
   closeMobileMenu();
 });
+// mellékattintás: a nyitott menün és a hamburgeren kívülre kattintva is záródjon
+document.addEventListener('click', (e) => {
+  if (!menu.classList.contains('open')) return;
+  if (e.target.closest('#navMenu') || e.target.closest('#navToggle')) return;
+  closeMobileMenu();
+});
 
 // "/#szekcio" linkek: ha a szekció ezen az oldalon is megvan, helyben görgetünk újratöltés nélkül
 document.addEventListener('click', (e) => {
