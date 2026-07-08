@@ -184,8 +184,23 @@ if (form) {
     btn.textContent = 'Küldés…';
     btn.disabled = true;
     try {
-      const fd = new FormData(form);
-      const res = await fetch('/mail.php', { method: 'POST', body: fd });
+      // FormSubmit AJAX — a Vercel hosting nem futtat PHP-t (mail.php megszűnt)
+      const res = await fetch('https://formsubmit.co/ajax/csanad.peter.czarth@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Új érdeklődő – lelkekgyogyasza.hu',
+          _template: 'table',
+          _cc: 'n.b.ildiko72@gmail.com',
+          _captcha: 'false',
+          'Név': form.querySelector('[name="name"]').value,
+          'Email': form.querySelector('[name="email"]').value,
+          'Telefon': form.querySelector('[name="phone"]').value,
+          'Lakcím': form.querySelector('[name="address"]')?.value || '',
+          'Érdekli': form.querySelector('[name="service"]').value,
+          'Üzenet': form.querySelector('[name="message"]').value,
+        })
+      });
       if (res.ok) {
         form.querySelectorAll('h3,div.form__row,div.form__group,button,p.form__note').forEach(el => el.style.display = 'none');
         document.getElementById('formThanks').style.display = 'block';
