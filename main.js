@@ -183,31 +183,50 @@ if (form) {
     const orig = btn.textContent;
     btn.textContent = 'Küldés…';
     btn.disabled = true;
+    const val = n => { const el = form.querySelector('[name="' + n + '"]'); return el ? el.value : ''; };
+    const data = { name: val('name'), email: val('email'), phone: val('phone'), address: val('address'), service: val('service'), message: val('message') };
+    let ok = false;
+    // 1) saját küldő (magyar, virágos sablon) — Vercel function + Brevo
     try {
-      // FormSubmit AJAX — a Vercel hosting nem futtat PHP-t (mail.php megszűnt)
-      const res = await fetch('https://formsubmit.co/ajax/csanad.peter.czarth@gmail.com', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          _subject: 'Új érdeklődő – lelkekgyogyasza.hu',
-          _template: 'table',
-          _cc: 'n.b.ildiko72@gmail.com',
-          _captcha: 'false',
-          'Név': form.querySelector('[name="name"]').value,
-          'Email': form.querySelector('[name="email"]').value,
-          'Telefon': form.querySelector('[name="phone"]').value,
-          'Lakcím': form.querySelector('[name="address"]')?.value || '',
-          'Érdekli': form.querySelector('[name="service"]').value,
-          'Üzenet': form.querySelector('[name="message"]').value,
-        })
-      });
-      if (res.ok) {
-        form.querySelectorAll('h3,div.form__row,div.form__group,button,p.form__note').forEach(el => el.style.display = 'none');
-        document.getElementById('formThanks').style.display = 'block';
-      } else { throw new Error(); }
-    } catch {
+      const r = await fetch('/api/mail', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      ok = r.ok;
+    } catch {}
+    // 2) tartalék: FormSubmit (a Vercel nem futtat PHP-t, a mail.php megszűnt)
+    if (!ok) {
+      try {
+        const r2 = await fetch('https://formsubmit.co/ajax/csanad.peter.czarth@gmail.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            _subject: 'Új érdeklődő – lelkekgyogyasza.hu',
+            _template: 'table',
+            _cc: 'n.b.ildiko72@gmail.com',
+            _captcha: 'false',
+            'Név': data.name, 'Email': data.email, 'Telefon': data.phone,
+            'Lakcím': data.address, 'Érdekli': data.service, 'Üzenet': data.message,
+          })
+        });
+        ok = r2.ok;
+      } catch {}
+    }
+    if (ok) {
+      form.querySelectorAll('h3,div.form__row,div.form__group,button,p.form__note').forEach(el => el.style.display = 'none');
+      document.getElementById('formThanks').style.display = 'block';
+      const m = form.querySelector('.form__mailto'); if (m) m.remove();
+    } else {
       btn.textContent = 'Hiba – írj emailben!';
       btn.style.background = '#c0392b';
+      // mailto gomb: a kitöltött adatokkal előkészített levél a default levelezőben
+      if (!form.querySelector('.form__mailto')) {
+        const a = document.createElement('a');
+        a.className = 'form__mailto';
+        a.href = 'mailto:n.b.ildiko72@gmail.com'
+          + '?subject=' + encodeURIComponent('Időpontfoglalás – lelkekgyogyasza.hu')
+          + '&body=' + encodeURIComponent('Név: ' + data.name + '\nTelefon: ' + data.phone + '\nÉrdekel: ' + data.service + '\n\n' + data.message);
+        a.textContent = '✉️ Emailt írok';
+        a.style.cssText = 'display:block;text-align:center;margin-top:12px;padding:11px 24px;border:2px solid #4E7249;border-radius:50px;color:#4E7249;font-weight:600;text-decoration:none';
+        btn.insertAdjacentElement('afterend', a);
+      }
       setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.disabled = false; }, 4000);
     }
   });
