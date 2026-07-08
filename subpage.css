@@ -654,7 +654,7 @@
 
 /* Ár-box: nagy ár + gomb */
 /* .mprice-card prefix, hogy legyozze a .method-block p (0,1,1) szabalyt */
-.mprice-card .mprice-price { text-align: center; font-family: var(--font-head); font-size: 2.7rem; font-weight: 700; color: var(--sage-deep); margin: .9rem 0 .4rem; line-height: 1.15; min-height: 3.8rem; display: flex; flex-direction: column; justify-content: center; }
+.mprice-card .mprice-price { text-align: center; font-family: var(--font-head); font-size: 1.45rem; font-weight: 700; color: var(--sage-deep); margin: .9rem 0 .4rem; line-height: 1.2; min-height: 3rem; display: flex; flex-direction: column; justify-content: center; }
 .mprice-card .mprice-price small { display: block; font-family: var(--font-body); font-size: .78rem; font-weight: 400; color: var(--text-soft); margin-top: .35rem; line-height: 1.4; }
 .mprice-card__action { text-align: center; margin-top: auto; padding-bottom: .9rem; }
 
