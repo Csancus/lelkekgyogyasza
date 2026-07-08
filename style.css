@@ -429,7 +429,9 @@ p + p { margin-top: .8rem; }
   .gallery-item:nth-child(9), .gallery-item:nth-child(10) { grid-column: span 1; }
   .reviews { grid-template-columns: 1fr 1fr; }
   .review { grid-column: span 1; }
-  .review:nth-child(4), .review:nth-child(5) { grid-column: span 1; }
+  /* a 6 oszlopos rácsra szabott fix pozíciók feloldása, különben szétfeszítik a rácsot */
+  .review:nth-child(4), .review:nth-child(5),
+  .review:nth-child(10), .review:nth-child(11) { grid-column: span 1; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
   .footer__modszerek { grid-column: 1 / -1; }
@@ -458,6 +460,7 @@ p + p { margin-top: .8rem; }
   .problems { grid-template-columns: 1fr 1fr; }
   .gallery-grid { grid-template-columns: 1fr 1fr; }
   .reviews { grid-template-columns: 1fr; }
+  .review:nth-child(10), .review:nth-child(11) { grid-column: auto; }
   .footer__inner { grid-template-columns: 1fr; }
   .section { padding: 4rem 0; }
   .form__row { grid-template-columns: 1fr; }
