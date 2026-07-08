@@ -461,6 +461,7 @@ p + p { margin-top: .8rem; }
   .gallery-grid { grid-template-columns: 1fr 1fr; }
   .reviews { grid-template-columns: 1fr; }
   .review:nth-child(10), .review:nth-child(11) { grid-column: auto; }
+  .hitvallas-cta { text-align: center; }
   .footer__inner { grid-template-columns: 1fr; }
   .section { padding: 4rem 0; }
   .form__row { grid-template-columns: 1fr; }
