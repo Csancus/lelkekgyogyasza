@@ -186,7 +186,8 @@ p + p { margin-top: .8rem; }
 .service-card__sub { font-size: .75rem; font-weight: 600; color: var(--sage); letter-spacing: .05em; text-transform: uppercase; margin-bottom: .85rem; display: block; }
 .service-card > p { font-size: .92rem; }
 .service-card__hook { font-size: .88rem; font-style: italic; color: var(--sage-deep); background: var(--sage-pale); border-left: 3px solid var(--sage); border-radius: var(--radius-sm); padding: .75rem 1rem; margin-top: 1rem; }
-.service-card__tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+/* margin-top: auto a kártya aljára tűzi a tageket + Részletek gombot, egységes pozícióba */
+.service-card__tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: 1.25rem; }
 .service-card__tags span { background: var(--sage-pale); color: var(--sage-deep); font-size: .72rem; font-weight: 600; padding: .3rem .8rem; border-radius: 50px; }
 
 .service-card__toggle { display: inline-flex; align-items: center; gap: .4rem; margin-top: 1.25rem; font-size: .82rem; font-weight: 600; color: var(--sage-deep); padding: .4rem 0; background: none; border: none; cursor: pointer; transition: color var(--transition); }
