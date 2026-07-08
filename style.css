@@ -94,6 +94,7 @@ p + p { margin-top: .8rem; }
 .nav__menu a:hover { color: var(--sage-deep); }
 .nav__actions { display: flex; align-items: center; gap: .75rem; flex-shrink: 0; }
 .nav__cta--mobile-only { display: none; }
+.nav__cta--header-mobile { display: none; }
 .nav__cta { background: var(--sage-deep); color: var(--white) !important; padding: .55rem 1.4rem; border-radius: 50px; font-size: .85rem !important; }
 .nav__cta:hover { background: var(--sage) !important; box-shadow: 0 4px 16px rgba(78,114,73,.3); }
 /* Nav dropdown */
@@ -442,6 +443,7 @@ p + p { margin-top: .8rem; }
   .nav__logo { flex: 1 1 0; min-width: 0; font-size: .9rem; overflow: hidden; white-space: nowrap; }
   .nav__phone-mobile { display: none; }
   .nav__toggle { display: flex; flex: 0 0 auto; }
+  .nav__cta--header-mobile { display: inline-flex; flex: 0 0 auto; font-size: .72rem !important; padding: .5rem .9rem; margin-right: .6rem; white-space: nowrap; }
   .nav__phone-cta { display: none; }
   .nav__actions { display: none; }
   /* Mobile menu panel */
@@ -455,6 +457,9 @@ p + p { margin-top: .8rem; }
   .nav__dropdown.open { display: block; }
   .nav__dropdown a { padding: .5rem 1.25rem; text-align: center; }
   .nav__cta { display: inline-flex; width: fit-content; }
+  /* mobil menü telefonszám gomb: flexben a szóköz eltűnik, az ikont gap igazítja */
+  .nav__menu a[href^="tel:"].nav__cta { align-items: center; gap: 6px; }
+  .nav__menu a[href^="tel:"].nav__cta svg { vertical-align: baseline; }
   .hero__title { font-size: 2.75rem; }
   .hero__actions { flex-direction: column; align-items: center; }
   .problems { grid-template-columns: 1fr 1fr; }
