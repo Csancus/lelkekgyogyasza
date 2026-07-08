@@ -275,7 +275,8 @@ p + p { margin-top: .8rem; }
 .kapcsolat__info > p { margin-bottom: 2rem; }
 .contact-details { display: flex; flex-direction: column; gap: 1.35rem; }
 .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
-.contact-item__icon { font-size: 1.3rem; flex-shrink: 0; }
+.contact-item__icon { font-size: 1.3rem; flex-shrink: 0; color: var(--sage-deep); line-height: 0; }
+.contact-item__icon svg { display: block; }
 .contact-item strong { display: block; font-size: .82rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--sage-deep); margin-bottom: .15rem; }
 .contact-item p, .contact-item a { font-size: .93rem; color: var(--text-soft); margin: 0; }
 .contact-item a:hover { color: var(--sage-deep); }
