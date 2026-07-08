@@ -13,6 +13,7 @@ function closeMobileMenu() {
   const dd = document.getElementById('navDropdown');
   if (dd) dd.classList.remove('open');
 }
+window.__navReady = true; // a head-beli tartalék-kezelő innentől nem fut
 toggle.addEventListener('click', () => {
   const open = menu.classList.toggle('open');
   toggle.classList.toggle('open', open);
