@@ -186,29 +186,22 @@ if (form) {
     const val = n => { const el = form.querySelector('[name="' + n + '"]'); return el ? el.value : ''; };
     const data = { name: val('name'), email: val('email'), phone: val('phone'), address: val('address'), service: val('service'), message: val('message') };
     let ok = false;
-    // 1) saját küldő (magyar, virágos sablon) — Vercel function + Brevo
+    // FormSubmit — ingyenes, emailben küldi a form mezőit (a Vercel nem futtat PHP-t)
     try {
-      const r = await fetch('/api/mail', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      const r = await fetch('https://formsubmit.co/ajax/csanad.peter.czarth@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Új érdeklődő – lelkekgyogyasza.hu',
+          _template: 'table',
+          _cc: 'n.b.ildiko72@gmail.com',
+          _captcha: 'false',
+          'Név': data.name, 'Email': data.email, 'Telefon': data.phone,
+          'Lakcím': data.address, 'Érdekli': data.service, 'Üzenet': data.message,
+        })
+      });
       ok = r.ok;
     } catch {}
-    // 2) tartalék: FormSubmit (a Vercel nem futtat PHP-t, a mail.php megszűnt)
-    if (!ok) {
-      try {
-        const r2 = await fetch('https://formsubmit.co/ajax/csanad.peter.czarth@gmail.com', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            _subject: 'Új érdeklődő – lelkekgyogyasza.hu',
-            _template: 'table',
-            _cc: 'n.b.ildiko72@gmail.com',
-            _captcha: 'false',
-            'Név': data.name, 'Email': data.email, 'Telefon': data.phone,
-            'Lakcím': data.address, 'Érdekli': data.service, 'Üzenet': data.message,
-          })
-        });
-        ok = r2.ok;
-      } catch {}
-    }
     if (ok) {
       form.querySelectorAll('h3,div.form__row,div.form__group,button,p.form__note').forEach(el => el.style.display = 'none');
       document.getElementById('formThanks').style.display = 'block';
