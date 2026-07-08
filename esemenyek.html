@@ -196,13 +196,21 @@
         performer: { '@type': 'Person', name: 'Berényi Ildikó' }
       };
       if (endTime) ev.endDate = e.date + 'T' + ('0' + endTime[1]).slice(-2) + ':' + endTime[2] + ':00+02:00';
-      if (e.image && e.image.indexOf('http') === 0) ev.image = [e.image];
+      // a base64 data-URL képet a Google nem használja, ilyenkor a hero kép megy
+      ev.image = [e.image && e.image.indexOf('http') === 0 ? e.image : 'https://lelkekgyogyasza.hu/images/hero-viragos.jpg'];
       ev.location = isOnline
         ? { '@type': 'VirtualLocation', url: e.signupUrl || 'https://lelkekgyogyasza.hu/esemenyek' }
         : { '@type': 'Place', name: e.location || 'Budapest', address: e.location || 'Budapest' };
       var price = (e.fee || '').replace(/[^0-9]/g, '');
       if (price) {
-        ev.offers = { '@type': 'Offer', price: price, priceCurrency: 'HUF', availability: 'https://schema.org/InStock', url: e.signupUrl || 'https://lelkekgyogyasza.hu/esemenyek' };
+        ev.offers = {
+          '@type': 'Offer',
+          price: price,
+          priceCurrency: 'HUF',
+          availability: 'https://schema.org/InStock',
+          validFrom: new Date(e.createdAt || Date.parse(e.date)).toISOString().slice(0, 10),
+          url: e.signupUrl || 'https://lelkekgyogyasza.hu/esemenyek'
+        };
       }
       return ev;
     });
