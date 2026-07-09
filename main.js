@@ -193,21 +193,24 @@ if (form) {
     const val = n => { const el = form.querySelector('[name="' + n + '"]'); return el ? el.value : ''; };
     const data = { name: val('name'), email: val('email'), phone: val('phone'), address: val('address'), service: val('service'), message: val('message') };
     let ok = false;
-    // FormSubmit — ingyenes, emailben küldi a form mezőit (a Vercel nem futtat PHP-t)
+    // Web3Forms — ingyenes, korlátlan (a FormSubmit 2026-07-15-én leáll)
     try {
-      const r = await fetch('https://formsubmit.co/ajax/csanad.peter.czarth@gmail.com', {
+      const r = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        keepalive: true,
         body: JSON.stringify({
-          _subject: 'Új érdeklődő – lelkekgyogyasza.hu',
-          _template: 'table',
-          _cc: 'n.b.ildiko72@gmail.com',
-          _captcha: 'false',
+          access_key: '9f19a3e8-946f-49ba-9c06-1604a8dee2bc',
+          subject: 'Új érdeklődő – lelkekgyogyasza.hu',
+          from_name: 'lelkekgyogyasza.hu',
+          cc: 'n.b.ildiko72@gmail.com',
+          replyto: data.email,
           'Név': data.name, 'Email': data.email, 'Telefon': data.phone,
           'Lakcím': data.address, 'Érdekli': data.service, 'Üzenet': data.message,
         })
       });
-      ok = r.ok;
+      const j = await r.json().catch(() => ({ success: r.ok }));
+      ok = j && (j.success === true || j.success === 'true');
     } catch {}
     if (ok) {
       form.querySelectorAll('h3,div.form__row,div.form__group,button,p.form__note').forEach(el => el.style.display = 'none');
