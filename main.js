@@ -203,7 +203,6 @@ if (form) {
           access_key: '9f19a3e8-946f-49ba-9c06-1604a8dee2bc',
           subject: 'Új érdeklődő – lelkekgyogyasza.hu',
           from_name: 'lelkekgyogyasza.hu',
-          cc: 'n.b.ildiko72@gmail.com',
           replyto: data.email,
           'Név': data.name, 'Email': data.email, 'Telefon': data.phone,
           'Lakcím': data.address, 'Érdekli': data.service, 'Üzenet': data.message,
