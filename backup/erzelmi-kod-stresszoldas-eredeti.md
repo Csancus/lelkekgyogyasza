@@ -1,3 +1,9 @@
+# Biztonsági mentés – erzelmi-kod-stresszoldas.html
+
+> Az eredeti /erzelmi-kod-stresszoldas oldal teljes HTML tartalma, mentve átalakítás előtt (2026-07-19).
+> URL: https://www.lelkekgyogyasza.hu/erzelmi-kod-stresszoldas
+
+```html
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -511,3 +517,5 @@
 <script src="main.js?v=16"></script>
 </body>
 </html>
+
+```

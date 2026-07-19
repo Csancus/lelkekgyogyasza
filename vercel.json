@@ -6,6 +6,11 @@
       "source": "/bach-viragterapi",
       "destination": "/bach-viragterapia",
       "permanent": true
+    },
+    {
+      "source": "/erzelmi-kod-stresszoldas",
+      "destination": "/wellness-kineziologia",
+      "permanent": true
     }
   ]
 }
