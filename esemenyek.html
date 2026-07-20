@@ -252,7 +252,7 @@
         : '<a href="#kapcsolat" class="btn btn--primary btn--sm" data-service="Egyéni Családállítás" data-booking="Jelentkezni szeretnék erre az eseményre: ' + esc(e.title) + ' (' + fmtDate(e.date) + ').">Jelentkezem</a>';
       var fb = e.fbUrl ? ' <a href="' + esc(e.fbUrl) + '" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Facebook esemény</a>' : '';
       return '<div class="esemeny-card' + (e.image ? ' esemeny-card--img' : '') + '">' +
-        (e.image ? '<img class="esemeny-card__cover" src="' + esc(e.image) + '" alt="" loading="lazy">' : '') +
+        (e.image ? '<img class="esemeny-card__cover" src="' + esc(e.image) + '" alt="' + esc(e.title) + '" loading="lazy">' : '') +
         '<div class="esemeny-card__grid">' +
         '<div class="esemeny-card__date"><span>' + fmtDate(e.date) + '</span>' + (e.time ? '<small>' + esc(e.time) + '</small>' : '') + (e.duration ? '<small>' + esc(e.duration) + '</small>' : '') + '</div>' +
         '<div class="esemeny-card__body"><h3>' + esc(e.title) + ' <span class="esemeny-badge esemeny-badge--' + (e.mode === 'online' ? 'online' : 'szemelyes') + '">' + (e.mode === 'online' ? 'Online' : 'Személyes') + '</span></h3>' +
