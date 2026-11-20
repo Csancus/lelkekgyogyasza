@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Események – workshopok és alkalmak időpontjai | Berényi Ildikó</title>
   <meta name="description" content="Közelgő események, workshopok és alkalmak Berényi Ildikónál. Jelentkezz időben – a helyek száma korlátozott.">
-  <link rel="canonical" href="https://lelkekgyogyasza.hu/esemenyek">
+  <link rel="canonical" href="https://www.lelkekgyogyasza.hu/esemenyek">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://lelkekgyogyasza.hu/esemenyek">
+  <meta property="og:url" content="https://www.lelkekgyogyasza.hu/esemenyek">
   <meta property="og:title" content="Események | Berényi Ildikó – Lelkek gyógyásza">
   <meta property="og:description" content="Közelgő események, workshopok és alkalmak.">
-  <meta property="og:image" content="https://lelkekgyogyasza.hu/images/ildiko.jpg">
+  <meta property="og:image" content="https://www.lelkekgyogyasza.hu/images/ildiko.jpg">
   <meta property="og:locale" content="hu_HU">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +21,10 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"CollectionPage","name":"Események – Berényi Ildikó","description":"Közelgő workshopok és alkalmak időpontjai.","url":"https://lelkekgyogyasza.hu/esemenyek"}
+  {"@context":"https://schema.org","@type":"CollectionPage","name":"Események – Berényi Ildikó","description":"Közelgő workshopok és alkalmak időpontjai.","url":"https://www.lelkekgyogyasza.hu/esemenyek"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://lelkekgyogyasza.hu/"},{"@type":"ListItem","position":2,"name":"Események","item":"https://lelkekgyogyasza.hu/esemenyek"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://www.lelkekgyogyasza.hu/"},{"@type":"ListItem","position":2,"name":"Események","item":"https://www.lelkekgyogyasza.hu/esemenyek"}]}
   </script>
   <script>document.addEventListener("click",function(e){if(window.__navReady||!e.target||!e.target.closest)return;var t=e.target.closest("#navToggle");if(!t)return;var m=document.getElementById("navMenu");if(m){var o=m.classList.toggle("open");t.classList.toggle("open",o);}},true);</script>
 </head>
@@ -210,15 +210,15 @@
         eventStatus: 'https://schema.org/EventScheduled',
         eventAttendanceMode: isOnline ? 'https://schema.org/OnlineEventAttendanceMode' : 'https://schema.org/OfflineEventAttendanceMode',
         description: plain(e.desc),
-        url: 'https://lelkekgyogyasza.hu/esemenyek',
-        organizer: { '@type': 'Person', name: 'Berényi Ildikó', url: 'https://lelkekgyogyasza.hu/' },
+        url: 'https://www.lelkekgyogyasza.hu/esemenyek',
+        organizer: { '@type': 'Person', name: 'Berényi Ildikó', url: 'https://www.lelkekgyogyasza.hu/' },
         performer: { '@type': 'Person', name: 'Berényi Ildikó' }
       };
       if (endTime) ev.endDate = e.date + 'T' + ('0' + endTime[1]).slice(-2) + ':' + endTime[2] + ':00+02:00';
       // a base64 data-URL képet a Google nem használja, ilyenkor a hero kép megy
-      ev.image = [e.image && e.image.indexOf('http') === 0 ? e.image : 'https://lelkekgyogyasza.hu/images/hero-viragos.jpg'];
+      ev.image = [e.image && e.image.indexOf('http') === 0 ? e.image : 'https://www.lelkekgyogyasza.hu/images/hero-viragos.jpg'];
       ev.location = isOnline
-        ? { '@type': 'VirtualLocation', url: e.signupUrl || 'https://lelkekgyogyasza.hu/esemenyek' }
+        ? { '@type': 'VirtualLocation', url: e.signupUrl || 'https://www.lelkekgyogyasza.hu/esemenyek' }
         : { '@type': 'Place', name: e.location || 'Budapest', address: e.location || 'Budapest' };
       var price = (e.fee || '').replace(/[^0-9]/g, '');
       if (price) {
@@ -228,7 +228,7 @@
           priceCurrency: 'HUF',
           availability: 'https://schema.org/InStock',
           validFrom: new Date(e.createdAt || Date.parse(e.date)).toISOString().slice(0, 10),
-          url: e.signupUrl || 'https://lelkekgyogyasza.hu/esemenyek'
+          url: e.signupUrl || 'https://www.lelkekgyogyasza.hu/esemenyek'
         };
       }
       return ev;

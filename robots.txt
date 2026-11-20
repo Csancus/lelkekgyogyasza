@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lelkekgyogyasza.hu/sitemap.xml
+Sitemap: https://www.lelkekgyogyasza.hu/sitemap.xml
